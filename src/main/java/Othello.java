@@ -68,6 +68,7 @@ public class Othello {
         // boucle de jeu
         while (true) {
             System.out.println(othello.plateau.toString());
+            System.out.println(othello.plateau.afficherScore());
             int[] tab = selectionCase(othello.plateau);
             System.out.println(tab[0] + " " + tab[1]);
             try{
