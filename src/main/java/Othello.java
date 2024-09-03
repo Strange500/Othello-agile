@@ -76,10 +76,11 @@ public class Othello {
             System.out.println(othello.plateau.toString());
             System.out.println(othello.plateau.afficherScore());
             try{
+                System.out.println(Intro.getJoueur1());
                 int[] tab = selectionCase(othello.plateau);
                 System.out.println(tab[0] + " " + tab[1]);
                 if(othello.plateau.isEmpty(tab[0], tab[1])){
-                    othello.plateau.setCase(Couleur.NOIR, tab[0], tab[1]);
+                    othello.plateau.setCase(Intro.getJoueur1().getColor(), tab[0], tab[1]);
                 }else{
                     throw new IndexOutOfBoundsException();
                 }
