@@ -1,5 +1,6 @@
 package main.java;
 
+import java.util.Scanner;
 
 public class Othello {
     Grille plateau;
@@ -21,6 +22,23 @@ public class Othello {
 
     private static int toInt(char c) {
         return c - 'A';
+    }
+
+    public static void main(String[] args) {
+        // intro
+        //  toDo
+
+
+        Othello othello = new Othello();
+        //othello.plateau.afficher();
+
+        // boucle de jeu
+        while (true) {
+            int[] tab = selectionCase(othello.plateau);
+            System.out.println(tab[0] + " " + tab[1]);
+        }
+  
+        
     }
 
     
