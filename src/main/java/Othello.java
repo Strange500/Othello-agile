@@ -78,7 +78,12 @@ public class Othello {
             try{
                 int[] tab = selectionCase(othello.plateau);
                 System.out.println(tab[0] + " " + tab[1]);
-                othello.plateau.setCase(Couleur.NOIR, tab[0], tab[1]);
+                if(othello.plateau.isEmpty(tab[0], tab[1])){
+                    othello.plateau.setCase(Couleur.NOIR, tab[0], tab[1]);
+                }else{
+                    throw new IndexOutOfBoundsException();
+                }
+                
             }
             catch(IndexOutOfBoundsException e){System.out.println("Mauvaise entrée !");}
             catch(InputMismatchException e){System.out.println("Mauvaise entrée !");}
