@@ -35,14 +35,14 @@ class Grille {
         return score;
     }
 
-    public void setCase(Couleur c, int x, int y) {
+    public void setCase(Couleur c, int y, int x) {
         grille.get(x).set(y, new Pion(c));
     }
 
     @Override
     public String toString() {
         String res = "";
-        res += "┌───┬───┬───┬───┬───┬───┬───┬───┐\n";
+        res += "    ┏━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┓\n    ┃ A ┃ B ┃ C ┃ D ┃ E ┃ F ┃ G ┃ H ┃\n┏━━━╃───╀───╀───╀───╀───╀───╀───╀───┦\n┃ 1 ";
         for(int i=0;i<8;i++){
             res += "│ ";
             if(grille.get(0).get(i) == null){
@@ -55,7 +55,7 @@ class Grille {
             }
         }
         for(int i=1;i<8;i++){
-            res += "│\n├───┼───┼───┼───┼───┼───┼───┼───┤\n";
+            res += "│\n┣━━━┽───┼───┼───┼───┼───┼───┼───┼───┤\n┃ " + (i+1) + " ";
             for(int j=0;j<8;j++){
                 res += "│ ";
                 if(grille.get(i).get(j) == null){
@@ -68,7 +68,7 @@ class Grille {
                 }
             }
         }
-        res += "│\n└───┴───┴───┴───┴───┴───┴───┴───┘\n";
+        res += "│\n┗━━━┵───┴───┴───┴───┴───┴───┴───┴───┘\n";
         return res;
     
     }
