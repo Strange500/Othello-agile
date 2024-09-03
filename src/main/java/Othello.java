@@ -82,7 +82,7 @@ public class Othello {
             }
             catch(IndexOutOfBoundsException e){System.out.println("Mauvaise entrée !");}
             catch(InputMismatchException e){System.out.println("Mauvaise entrée !");}
-            TimeUnit.SECONDS.sleep(1);
+            finally{TimeUnit.SECONDS.sleep(1);}
             System.out.flush();
         }
   
