@@ -53,7 +53,7 @@ public class Intro {
         return joueurs.get(1);
     }
 
-    public static void fin(Joueur j, int score) throws FileNotFoundException, IOException{
+    public static void fin(Joueur j, int score) throws FileNotFoundException, IOException, InterruptedException{
         Intro.clear();
         try(BufferedReader br = new BufferedReader(new FileReader(new File("./src/main/ressources/txt/winner.txt")))){
             while(br.ready()){
@@ -66,7 +66,7 @@ public class Intro {
     }
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        fin(new Joueur("Brice", Couleur.NOIR), 89);
+
     }
 
 }

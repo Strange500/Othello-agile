@@ -1,5 +1,6 @@
 package main.java;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -57,7 +58,7 @@ public class Othello {
         return false;
     }
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, FileNotFoundException, IOException {
         // intro
         //  toDo
         try {
@@ -70,25 +71,32 @@ public class Othello {
 
         Othello othello = new Othello();
         othello.plateau.initialise();
+        
         //othello.plateau.afficher();
         // boucle de jeu
-        while (true) {
+        while (!othello.jeuFini()) {
             System.out.println(othello.plateau.toString());
             System.out.println(othello.plateau.afficherScore());
             try{
                 int[] tab = selectionCase(othello.plateau);
                 System.out.println(tab[0] + " " + tab[1]);
-                if(othello.plateau.isEmpty(tab[0], tab[1])){
+                if(othello.plateau.isEmpty(tab[1], tab[0])){
                     othello.plateau.setCase(Couleur.NOIR, tab[0], tab[1]);
                 }else{
                     throw new IndexOutOfBoundsException();
                 }
                 
             }
-            catch(IndexOutOfBoundsException e){System.out.println("Mauvaise entrée !");}
-            catch(InputMismatchException e){System.out.println("Mauvaise entrée !");}
+            catch(IndexOutOfBoundsException e){System.out.println("Mauvaise entré !");}
+            catch(InputMismatchException e){System.out.println("Mauvaise entréeeeeee !");}
             finally{TimeUnit.SECONDS.sleep(1);}
             System.out.flush();
+        }
+
+        if(othello.plateau.verifScore().get(Couleur.NOIR) > othello.plateau.verifScore().get(Couleur.BLANC)){
+            Intro.fin(Intro.getJoueur1(), othello.plateau.verifScore().get(Couleur.NOIR));
+        }else{
+            Intro.fin(Intro.getJoueur2(), othello.plateau.verifScore().get(Couleur.BLANC));
         }
   
         
