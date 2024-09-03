@@ -17,4 +17,8 @@ public class Joueur {
     public Couleur getColor() {
         return color;
     }
+
+    public String toString() {
+        return this.getName() + " " + this. getColor();
+    }
 }
