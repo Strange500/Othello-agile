@@ -36,7 +36,7 @@ public class Othello {
     public boolean jeuFini(){
         for(ArrayList<Pion> ligne : this.plateau.grille){
             for(Pion p : ligne){
-                if(p != null) return false;
+                if(p == null) return false;
             }
         }
         return true;
