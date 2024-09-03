@@ -38,7 +38,7 @@ public class Joueur implements Serializable {
     }
 
     public String toString() {
-        return this.getName() + " " + this. getColor();
+        return this.getName() + ", couleur : " + this.getColor().toString().substring(0, 1)+this.getColor().toString().substring(1).toLowerCase();
     }
 
     private static String makeFilename(String name) {
