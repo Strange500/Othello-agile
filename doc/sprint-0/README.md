@@ -5,16 +5,16 @@
 ### Ce que nous avons fait durant ce sprint
 Création du radiateur d'informations, et de la backlog, et les US:
  * Niveau 1:
-  * Affichage/vérification scores
-  * Gestion du joueur (infos comme sa couleur de pion, son nom, son score...)
-  * Vérification si jeu fini (Grille pleine ou plus de mouvement possible)
-  * Gestion de la couleur des pions
-  * Introduction (écran de démarrage, affichage regles)
+    * Affichage/vérification scores
+    * Gestion du joueur (infos comme sa couleur de pion, son nom, son score...)
+    * Vérification si jeu fini (Grille pleine ou plus de mouvement possible)
+    * Gestion de la couleur des pions
+    * Introduction (écran de démarrage, affichage regles)
 
 * Niveau 2:
- * Sélection de la case à jouer
- * introduction/ résumé des règles
- * gestion de la grille, et position des pions
+  * Sélection de la case à jouer
+  * introduction/ résumé des règles
+  * gestion de la grille, et position des pions
 
 * Niveau 3:
  * Sérialisation des scores dans un fichier (CSV)
