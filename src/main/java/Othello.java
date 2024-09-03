@@ -1,6 +1,7 @@
 package main.java;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Othello {
@@ -24,7 +25,15 @@ public class Othello {
     private static int toInt(char c) {
         return c - 'A';
     }
-
+    
+    public boolean jeuFini(){
+        for(ArrayList<Pion> ligne : this.plateau.grille){
+            for(Pion p : ligne){
+                if(p != null) return false;
+            }
+        }
+        return true;
+    }
 
     private static boolean PionAdverseAdjacent(int x, int y, Couleur c, Grille g) {
         for (int i = x-1; i <= x+1; i++) {
@@ -62,7 +71,7 @@ public class Othello {
             int[] tab = selectionCase(othello.plateau);
             System.out.println(tab[0] + " " + tab[1]);
             othello.plateau.setCase(Couleur.NOIR, tab[0], tab[1]);
-            
+            System.out.flush();
         }
   
         
