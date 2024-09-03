@@ -73,4 +73,8 @@ class Grille {
     
     }
 
+    public boolean isEmpty(int x, int y){
+        return grille.get(x).get(y) == null;
+    }
+
 }
