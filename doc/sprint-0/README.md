@@ -12,23 +12,23 @@ Création du radiateur d'informations, et de la backlog, et les US:
     * Introduction (écran de démarrage, affichage regles)
 
 * Niveau 2:
-  * Sélection de la case à jouer
-  * introduction/ résumé des règles
-  * gestion de la grille, et position des pions
+    * Sélection de la case à jouer
+    * introduction/ résumé des règles
+    * gestion de la grille, et position des pions
 
 * Niveau 3:
- * Sérialisation des scores dans un fichier (CSV)
- * Affichage des meilleurs scores
+    * Sérialisation des scores dans un fichier (CSV)
+    * Affichage des meilleurs scores
 
 * Niveau 5:
- * Animation de l'écran de démarrage
+    * Animation de l'écran de démarrage
 
 * Niveau 8:
- * Vérification des cases disponibles (sur lesquelles on peut déplacer un pion)
- * Actualisation de la grille
+    * Vérification des cases disponibles (sur lesquelles on peut déplacer un pion)
+    * Actualisation de la grille
 
 * Niveau 13:
- * "Bot" pour jouer contre l'ordinateur
+    * "Bot" pour jouer contre l'ordinateur
 
 ### Ce que nous allons faire durant le prochain sprint
  * Gestion de la couleur des pions
