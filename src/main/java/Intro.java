@@ -53,8 +53,20 @@ public class Intro {
         return joueurs.get(1);
     }
 
+    public static void fin(Joueur j, int score) throws FileNotFoundException, IOException, InterruptedException{
+        Intro.clear();
+        try(BufferedReader br = new BufferedReader(new FileReader(new File("./src/main/ressources/txt/winner.txt")))){
+            while(br.ready()){
+                System.out.println(br.readLine());
+            }
+            
+        }
+        System.out.println("\tLe joueur " + j.getName() + " vient de gagner la partie avec plus de " + score + " points");
+
+    }
+
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        affichage();
+
     }
 
 }
