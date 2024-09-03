@@ -94,6 +94,16 @@ class Grille {
         setCase(Couleur.BLANC, 4, 3);
     }
 
+    public String afficherScore(){
+        String result = "";
+        int score1, score2;
+        score1 = verifScore().get(Couleur.NOIR).intValue();
+        score2 = verifScore().get(Couleur.BLANC).intValue();
+        result += "Le score des noirs est de " + score1 + "\n";
+        result += "Le score des blancs est de " + score2 + "\n";
+        return result;
+    }
+
     public boolean mouvementPossible(int colonne, int ligne, Joueur joueur){
         boolean res = false;
         Couleur opponent = (joueur.getColor() == Couleur.NOIR) ? Couleur.BLANC : Couleur.NOIR;
