@@ -2,7 +2,9 @@ package main.java;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Othello {
     Grille plateau;
@@ -11,6 +13,10 @@ public class Othello {
         this.plateau = new Grille();
     }
 
+    public static void clear(){
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
     public static int[] selectionCase(Grille g ) {
         Scanner sc = new Scanner(System.in);
         int[] tab = new int[2];
@@ -51,7 +57,7 @@ public class Othello {
         return false;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         // intro
         //  toDo
         try {
@@ -66,21 +72,29 @@ public class Othello {
         othello.plateau.initialise();
         //othello.plateau.afficher();
         // boucle de jeu
-        while (true) {
+        while (!othello.jeuFini()) {
             System.out.println(othello.plateau.toString());
             System.out.println(othello.plateau.afficherScore());
-            int[] tab = selectionCase(othello.plateau);
-            System.out.println(tab[0] + " " + tab[1]);
-            if(othello.plateau.mouvementPossible(tab[0], tab[1], player)){
-                try{
-                    othello.plateau.setCase(Couleur.NOIR, tab[0], tab[1]);
+            try{
+                System.out.println(Intro.getJoueur1());
+                int[] tab = selectionCase(othello.plateau);
+                System.out.println(tab[0] + " " + tab[1]);
+                if(othello.plateau.mouvementPossible(tab[0], tab[1], Intro.getJoueur1())){
+                    othello.plateau.setCase(Intro.getJoueur1().getColor(), tab[0], tab[1]);
+                }else{
+                    throw new IndexOutOfBoundsException();
                 }
-                catch(IndexOutOfBoundsException e){System.out.println("Mauvaise entrée !");
-                }
+                
             }
+            catch(IndexOutOfBoundsException e){System.out.println("Mauvaise entrée !");}
+            catch(InputMismatchException e){System.out.println("Mauvaise entrée !");}
+            finally{TimeUnit.SECONDS.sleep(1);}
             System.out.flush();
         }
-    }
 
-    
+        Joueur.savePlayer(Intro.getJoueur1());
+        Joueur.savePlayer(Intro.getJoueur2());
+  
+        
+    }
 }
