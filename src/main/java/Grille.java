@@ -45,24 +45,26 @@ class Grille {
         res += "┌───┬───┬───┬───┬───┬───┬───┬───┐\n";
         for(int i=0;i<8;i++){
             res += "│ ";
-            if(grille.get(0).get(i).couleur == Couleur.NOIR){
+            if(grille.get(0).get(i) == null){
+                res += "  ";
+            }
+            else if(grille.get(0).get(i).couleur == Couleur.NOIR){
                 res += "⛀ ";
-            } else if(grille.get(0).get(i).couleur == Couleur.BLANC){
-                res += "⛂ ";
             } else {
-            res += "  ";
+                res += "⛂ ";
             }
         }
         for(int i=0;i<8;i++){
             res += "│\n├───┼───┼───┼───┼───┼───┼───┼───┤\n";
             for(int j=0;j<8;j++){
                 res += "│ ";
-                if(grille.get(i).get(j).couleur == Couleur.NOIR){
+                if(grille.get(i).get(j) == null){
+                    res += "  ";
+                }
+                else if(grille.get(i).get(j).couleur == Couleur.NOIR){
                     res += "⛀ ";
-                } else if(grille.get(i).get(j).couleur == Couleur.BLANC){
-                    res += "⛂ ";
                 } else {
-                res += "  ";
+                    res += "⛂ ";
                 }
             }
         }
