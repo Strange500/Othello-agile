@@ -63,8 +63,8 @@ public class Othello {
 
 
         Othello othello = new Othello();
+        othello.plateau.initialise();
         //othello.plateau.afficher();
-        othello.plateau.setCase(Couleur.BLANC, 5, 5);
         // boucle de jeu
         while (true) {
             System.out.println(othello.plateau.toString());
