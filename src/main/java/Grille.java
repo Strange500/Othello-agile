@@ -77,4 +77,8 @@ class Grille {
         return grille.get(x).get(y) == null;
     }
 
+    public Pion getCase(int x, int y){
+        return grille.get(x).get(y);
+    }
+
 }

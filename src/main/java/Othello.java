@@ -25,7 +25,7 @@ public class Othello {
     private static int toInt(char c) {
         return c - 'A';
     }
-
+    
     public boolean jeuFini(){
         for(ArrayList<Pion> ligne : this.plateau.grille){
             for(Pion p : ligne){
@@ -33,6 +33,22 @@ public class Othello {
             }
         }
         return true;
+    }
+
+    private static boolean PionAdverseAdjacent(int x, int y, Couleur c, Grille g) {
+        for (int i = x-1; i <= x+1; i++) {
+            for (int j = y-1; j <= y+1; j++) {
+                if (i >= 0 && i < 8 && j >= 0 && j < 8 && !(i == x && j == y)) {
+                    System.out.println(i + " " + j);
+                    if (g.getCase(i, j) == null) {
+                        continue;
+                    } else if (g.getCase(i, j).couleur != c) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     public static void main(String[] args) {
@@ -48,7 +64,7 @@ public class Othello {
 
         Othello othello = new Othello();
         //othello.plateau.afficher();
-
+        othello.plateau.setCase(Couleur.BLANC, 5, 5);
         // boucle de jeu
         while (true) {
             System.out.println(othello.plateau.toString());
