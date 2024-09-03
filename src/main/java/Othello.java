@@ -72,7 +72,7 @@ public class Othello {
         othello.plateau.initialise();
         //othello.plateau.afficher();
         // boucle de jeu
-        while (true) {
+        while (!othello.jeuFini()) {
             System.out.println(othello.plateau.toString());
             System.out.println(othello.plateau.afficherScore());
             try{
@@ -91,9 +91,10 @@ public class Othello {
             finally{TimeUnit.SECONDS.sleep(1);}
             System.out.flush();
         }
+
+        Joueur.savePlayer(Intro.getJoueur1());
+        Joueur.savePlayer(Intro.getJoueur2());
   
         
     }
-
-    
 }
