@@ -94,4 +94,38 @@ class Grille {
         setCase(Couleur.BLANC, 4, 3);
     }
 
+    public boolean mouvementPossible(int colonne, int ligne, Joueur joueur){
+        boolean res = false;
+        Couleur opponent = (joueur.getColor() == Couleur.NOIR) ? Couleur.BLANC : Couleur.NOIR;
+        if(isEmpty(colonne, ligne)) return false;
+
+        int[][] directions = {
+            {-1, 0}, {1, 0}, {0, -1}, {0, 1},
+            {-1, -1}, {-1, 1}, {1, -1}, {1, 1}
+        };
+
+        for (int[] dir : directions) {
+            int r = colonne + dir[0];
+            int c = ligne + dir[1];
+            boolean foundOpponent = false;
+
+            while (r >= 0 && r < 8 && c >= 0 && c < 8) {
+                if (grille.get(r).get(c).couleur.equals(opponent)) {
+                    foundOpponent = true;
+                } else if (grille.get(r).get(c).couleur.equals(joueur.getColor())) {
+                    if (foundOpponent) {
+                        res = true;
+                    }
+                    break; // On arrête d'aller dans cette direction
+                } else {
+                    break; // Espace vide ou invalide
+                }
+                r += dir[0];
+                c += dir[1];
+            }
+        }
+        return res;
+    }
+
+
 }
