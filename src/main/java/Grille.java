@@ -87,4 +87,11 @@ class Grille {
         return grille.get(x).get(y);
     }
 
+    public void initialise() {
+        setCase(Couleur.NOIR, 3, 3);
+        setCase(Couleur.NOIR, 4, 4);
+        setCase(Couleur.BLANC, 3, 4);
+        setCase(Couleur.BLANC, 4, 3);
+    }
+
 }
