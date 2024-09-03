@@ -1,6 +1,7 @@
 package main.java;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Othello {
@@ -25,6 +26,15 @@ public class Othello {
         return c - 'A';
     }
 
+    public boolean jeuFini(){
+        for(ArrayList<Pion> ligne : this.plateau.grille){
+            for(Pion p : ligne){
+                if(p != null) return false;
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         // intro
         //  toDo
@@ -45,6 +55,7 @@ public class Othello {
             int[] tab = selectionCase(othello.plateau);
             System.out.println(tab[0] + " " + tab[1]);
             othello.plateau.setCase(Couleur.NOIR, tab[0], tab[1]);
+            System.out.flush();
         }
   
         
