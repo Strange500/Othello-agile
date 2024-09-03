@@ -42,7 +42,7 @@ public class Intro {
         System.out.println("Veuillez choisir le PSEUDO du joueur 2 (Ayant les pions blancs) :  \n");
         String nom2 = scan.nextLine();
         joueurs.add(new Joueur(nom2, Couleur.BLANC));
-        scan.close();
+        //scan.close();
     }
 
     public static Joueur getJoueur1() {
