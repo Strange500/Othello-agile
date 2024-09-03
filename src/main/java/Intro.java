@@ -14,10 +14,14 @@ public class Intro {
     private static ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
 
     
-
+    public static void clear(){
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
 
     public static void affichage() throws FileNotFoundException, IOException{
 
+        Intro.clear();
         try(BufferedReader br = new BufferedReader(new FileReader(new File("./src/main/ressources/txt/logo.txt")))){
             while(br.ready()){
                 System.out.println(br.readLine());
