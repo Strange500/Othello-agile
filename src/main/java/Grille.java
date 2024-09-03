@@ -54,7 +54,7 @@ class Grille {
                 res += "⛂ ";
             }
         }
-        for(int i=0;i<8;i++){
+        for(int i=1;i<8;i++){
             res += "│\n├───┼───┼───┼───┼───┼───┼───┼───┤\n";
             for(int j=0;j<8;j++){
                 res += "│ ";
