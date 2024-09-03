@@ -1,14 +1,20 @@
-Bienvenue dans OTHELLO !!
 
-Le but du jeu est de terminer la partie avec plus de pions que son adversaire. La partie s'achève lorsque aucun des 2 joueurs ne peut plus jouer.
 
-Le joueur avec la couleur noir commence.
+████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+█ Bienvenue dans OTHELLO !!                                                                                                                            █
+█                                                                                                                                                      █
+█ Le but du jeu est de terminer la partie avec plus de pions que son adversaire. La partie s'achève lorsque aucun des 2 joueurs ne peut plus jouer.    █
+█                                                                                                                                                      █
+█ Le joueur avec la couleur noir commence.                                                                                                             █
+█                                                                                                                                                      █
+█ À son tour, le joueur doit poser son pion sur un emplacement libre, adjacente à un pion adverse.                                                     █
+█ Le pion posé doit pouvoir encadrer un ou plusieurs pions adverse.                                                                                    █ 
+█                                                                                                                                                      █ 
+█ Cet encadrement est possible horizontalement, verticalement ainsi qu'en diagonale.                                                                   █
+█                                                                                                                                                      █
+█ Le(s) pion(s) adverse(s) encadré(s) se retourne(nt) pour devenir le(s) pion(s) du joueur courant.                                                    █
+█                                                                                                                                                      █
+█ Bon jeu à vous !                                                                                                                                     █
+█                                                                                                                                                      █
+████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
 
-À son tour, le joueur doit poser son pion sur un emplacement libre, adjacente à un pion adverse.
-Le pion posé doit pouvoir encadrer un ou plusieurs pions adverse.
-
-Cet encadrement est possible horizontalement, verticalement ainsi qu'en diagonale.
-
-Le(s) pion(s) adverse(s) encadré(s) se retourne(nt) pour devenir le(s) pion(s) du joueur courant.
-
-Bon jeu à vous !
