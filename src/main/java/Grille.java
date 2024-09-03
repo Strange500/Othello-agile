@@ -35,4 +35,8 @@ class Grille {
         return score;
     }
 
+    public void setCase(Couleur c, int x, int y) {
+        grille.get(x).set(y, new Pion(c));
+    }
+
 }

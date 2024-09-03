@@ -36,6 +36,7 @@ public class Othello {
         while (true) {
             int[] tab = selectionCase(othello.plateau);
             System.out.println(tab[0] + " " + tab[1]);
+            othello.plateau.setCase(Couleur.NOIR, tab[0], tab[1]);
         }
   
         
