@@ -1,5 +1,6 @@
 package main.java;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Othello {
@@ -27,6 +28,12 @@ public class Othello {
     public static void main(String[] args) {
         // intro
         //  toDo
+        try {
+            Intro.affichage();
+        } catch (IOException e) {
+            // TODO: handle exception
+            System.out.println(e);
+        }
 
 
         Othello othello = new Othello();
@@ -34,6 +41,7 @@ public class Othello {
 
         // boucle de jeu
         while (true) {
+            System.out.println(othello.plateau.toString());
             int[] tab = selectionCase(othello.plateau);
             System.out.println(tab[0] + " " + tab[1]);
             othello.plateau.setCase(Couleur.NOIR, tab[0], tab[1]);
