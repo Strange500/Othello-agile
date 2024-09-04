@@ -95,7 +95,7 @@ public class Othello {
                 System.out.println(joueurCourrant);
                 int[] tab = selectionCase(othello.plateau);
                 System.out.println(tab[0] + " " + tab[1]);
-                if(othello.plateau.mouvementPossible(tab[0], tab[1], joueurCourrant)){
+                if(othello.plateau.mouvementPossible(tab[1], tab[0], joueurCourrant)){
                     othello.plateau.setCase(joueurCourrant.getColor(), tab[0], tab[1]);
                 }
                 else{
