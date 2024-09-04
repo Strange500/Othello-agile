@@ -16,10 +16,6 @@ public class Othello {
         this.plateau = new Grille();
     }
 
-    public static void clear(){
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
     public static int[] selectionCase(Grille g ) {
         Scanner sc = new Scanner(System.in);
         int[] tab = new int[2];
@@ -90,7 +86,6 @@ public class Othello {
         // boucle de jeu
         int j_actu = 0;
         while (!othello.jeuFini() && !cte) {
-            Othello.clear();
             System.out.println(othello.plateau.afficher(Intro.getJoueur(j_actu%2)));
             System.out.println(othello.plateau.afficherScore());
             Joueur joueurCourrant = Intro.getJoueur(j_actu%2);
@@ -107,13 +102,11 @@ public class Othello {
                         ArrayList<int[]> tmp = new ArrayList<int[]>();
                         tmp.addAll(othello.plateau.pionARetourner);
                         for (int[] coord : tmp) {
-                            Othello.clear();
                             System.out.println(othello.plateau.afficher(Intro.getJoueur(j_actu%2)));
                             TimeUnit.MILLISECONDS.sleep(1000);
                             othello.plateau.setCase(joueurCourrant.getColor(), coord[0], coord[1]);
                             
                         }
-                        Othello.clear();
                         System.out.println(othello.plateau.afficher(Intro.getJoueur(j_actu%2)));
                     }
                     else{
