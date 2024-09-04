@@ -22,10 +22,10 @@ public class Othello {
     public static int[] selectionCase(Grille g ) {
         Scanner sc = new Scanner(System.in);
         int[] tab = new int[2];
-        System.out.println("Veuillez saisir la ligne de la case choisie (A - H) : ");
-        tab[0] = toInt(sc.next().toUpperCase().charAt(0));
-        System.out.println("Veuillez saisir la colonne de la case choisie (1 - 8): ");
-        tab[1] = sc.nextInt() -1;
+        System.out.println("Veuillez saisir la ligne de la case suivi de la colonne choisie (ex: A1) : ");
+        String tmp = sc.next().toUpperCase();
+        tab[0] = toInt(tmp.charAt(0));
+        tab[1] = tmp.charAt(1) - '0' - 1;
         return tab;
         
     }
