@@ -7,10 +7,15 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 
 public class Joueur implements Serializable {
 
     private static final String PATH= "./src/main/ressources/joueur/";
+    private static final int NB_BEST_PLAYER = 10;
 
     String name;
     Couleur color;
@@ -76,11 +81,53 @@ public class Joueur implements Serializable {
         }
         return null;
     }
+
+
+    private static List<Joueur> sortPlayerList(List<Joueur> list) {
+        List<Joueur> l = new ArrayList<>();
+        for (int j = 0;  j < NB_BEST_PLAYER; j++) {
+            if (list.size() == 0) {
+                break;
+            }
+            Joueur max = list.get(0);
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i) != null && list.get(i).score > max.score) {
+                    max = list.get(i);
+                }
+            }
+            if (max == null) {
+                break;
+            }
+            l.add(max);
+            list.remove(max);
+        }
+        return l;
+
+    }
+    public static List<Joueur> getBestPlayers() {
+        File[] files = new File(PATH).listFiles();
+        List<Joueur >list = new ArrayList<>();
+        for (int i = 0; i < files.length; i++) {
+            list.add(loadJoueur(files[i].getName().split(".ser")[0]));
+        }
+        return sortPlayerList(list);
+    }
+
+    
+
     public static void main(String[] args) {
         // test serialization
-        Joueur j = new Joueur("toto", Couleur.NOIR);
+        Joueur j = new Joueur("totouille", Couleur.NOIR);
         savePlayer(j);
         Joueur j2 = loadJoueur("toto");
-        System.out.println(j2);
+        j2.score = 30;
+        //System.out.println(j2);
+        // test getBestPlayer
+        Joueur j3 = new Joueur("titi", Couleur.BLANC);
+        j3.score = 10;
+        savePlayer(j3);
+        savePlayer(j2);
+        List<Joueur> list = getBestPlayers();
+        
     }
 }
