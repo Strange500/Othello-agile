@@ -48,6 +48,13 @@ public class Intro {
     public static void Start()  throws FileNotFoundException, IOException{
         Scanner scan = new Scanner(System.in);
         String choix = scan.nextLine();
+        //Mode 1 contre ordinateur pas encore implémenté
+        if(Integer.parseInt(choix)==2){
+            System.out.println("Coming soon... \n Appuyez sur n'importe quelle touche pour revenir en arrière.");
+            System.in.read();
+            affichage();
+            Start();
+        }
         while(choix.length() == 0 || (choix.charAt(0) != '1' && choix.charAt(0) != '2')){
             Intro.affichage();
             choix = scan.nextLine();
