@@ -88,7 +88,7 @@ public class Othello {
         // boucle de jeu
         int j_actu = 0;
         while (!othello.jeuFini()) {
-            System.out.println(othello.plateau.toString());
+            System.out.println(othello.plateau.afficher(Intro.getJoueur(j_actu%2)));
             System.out.println(othello.plateau.afficherScore());
             Joueur joueurCourrant = Intro.getJoueur(j_actu%2);
             try{

@@ -2,6 +2,7 @@ package main.java;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -44,14 +45,50 @@ class Grille {
         System.out.flush();
     }
 
-    @Override
-    public String toString() {
-        Grille.clear();
+    private List<int[]> ValidMoves(Joueur joueur) {
+        List<int[]> ligne = new ArrayList<>();
+        for (int i = 0; i < grille.size(); i++) {
+            for (int j = 0; j < grille.get(i).size(); j++) {
+                //System.out.println("pion " + j +" " + i "=" + mouvementPossible(i, j, joueur));
+                if (mouvementPossible(i, j, joueur)) {
+                    ligne.add(new int[]{i, j});
+                }
+            }
+        }
+        return ligne;
+    }
+
+    private static boolean equalsCoordonate(int x1, int y1, int x2, int y2) {
+        return x1 == x2 && y1 == y2;
+    }
+
+    private static boolean containsCoordonate(int x, int y, List<int[]> coordonnates) {
+        boolean flag = false;
+        int cpt = 0;
+        while (!flag && cpt < coordonnates.size()) {
+            if (equalsCoordonate(x,y,coordonnates.get(cpt)[0], coordonnates.get(cpt)[1])) {
+                flag = true;
+            }
+            cpt++;
+        }
+        return flag;
+    }
+
+
+
+    public String afficher(Joueur joueur) {
+        //Grille.clear();
+        boolean flag = false;
         String res = "";
+        List<int[]> flags = ValidMoves( joueur);
         res += "    ┏━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┓\n    ┃ A ┃ B ┃ C ┃ D ┃ E ┃ F ┃ G ┃ H ┃\n┏━━━╃───╀───╀───╀───╀───╀───╀───╀───┦\n┃ 1 ";
         for(int i=0;i<8;i++){
             res += "│ ";
-            if(grille.get(0).get(i) == null){
+            if(containsCoordonate(i, 0, flags)){
+                res+= "f ";
+                
+            }
+            else if (grille.get(0).get(i) == null){
                 res += "  ";
             }
             else if(grille.get(0).get(i).couleur == Couleur.NOIR){
@@ -64,7 +101,11 @@ class Grille {
             res += "│\n┣━━━┽───┼───┼───┼───┼───┼───┼───┼───┤\n┃ " + (i+1) + " ";
             for(int j=0;j<8;j++){
                 res += "│ ";
-                if(grille.get(i).get(j) == null){
+                if(containsCoordonate(i, j, flags)){
+                    res+= "f ";
+                
+                }
+                else if (grille.get(i).get(j) == null){
                     res += "  ";
                 }
                 else if(grille.get(i).get(j).couleur == Couleur.NOIR){
