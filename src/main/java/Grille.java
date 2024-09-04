@@ -47,7 +47,7 @@ class Grille {
         System.out.flush();
     }
 
-    private List<int[]> ValidMoves(Joueur joueur) {
+    public List<int[]> ValidMoves(Joueur joueur) {
         List<int[]> ligne = new ArrayList<>();
         for (int i = 0; i < grille.size(); i++) {
             for (int j = 0; j < grille.get(i).size(); j++) {
@@ -79,7 +79,7 @@ class Grille {
 
 
     public String afficher(Joueur joueur) {
-        if(!Othello.debugMode) Grille.clear();
+        Grille.clear();
         String res = "";
         List<int[]> flags = ValidMoves(joueur);
         res += "    ┏━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┓\n    ┃ A ┃ B ┃ C ┃ D ┃ E ┃ F ┃ G ┃ H ┃\n┏━━━╃───╀───╀───╀───╀───╀───╀───╀───┦\n┃ 1 ";
@@ -178,7 +178,7 @@ class Grille {
                 return pieceAdverse; // Valide si on trouve au moins une pièce adverse
             } else {
                 //pionARetourner.clear();
-                break; // Vide, on arrête d'aller dans cette direction
+                return false; // Vide, on arrête d'aller dans cette direction
             }
             l += directionLigne;
             c += directionColonne;
