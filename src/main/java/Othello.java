@@ -73,6 +73,7 @@ public class Othello {
     public static void main(String[] args) throws InterruptedException, FileNotFoundException, IOException, MouvementException {
         // intro
         //  toDo
+        boolean cte = false;
         try {
             Intro.affichage();
             Intro.Start();
@@ -87,7 +88,7 @@ public class Othello {
         //othello.plateau.afficher();
         // boucle de jeu
         int j_actu = 0;
-        while (!othello.jeuFini()) {
+        while (!othello.jeuFini() && !cte) {
             System.out.println(othello.plateau.afficher(Intro.getJoueur(j_actu%2)));
             System.out.println(othello.plateau.afficherScore());
             Joueur joueurCourrant = Intro.getJoueur(j_actu%2);
@@ -95,11 +96,14 @@ public class Othello {
                 System.out.println(joueurCourrant);
                 int[] tab = selectionCase(othello.plateau);
                 System.out.println(tab[0] + " " + tab[1]);
-                if(othello.plateau.mouvementPossible(tab[1], tab[0], joueurCourrant)){
-                    othello.plateau.setCase(joueurCourrant.getColor(), tab[0], tab[1]);
-                }
-                else{
-                    throw new MouvementException();
+                if(tab[0] == 8 && tab[1] == 8) cte = true;
+                if(!cte){
+                    if(othello.plateau.mouvementPossible(tab[1], tab[0], joueurCourrant)){
+                        othello.plateau.setCase(joueurCourrant.getColor(), tab[0], tab[1]);
+                    }
+                    else{
+                        throw new MouvementException();
+                    }
                 }
             }
             catch(IndexOutOfBoundsException e){System.out.println("Mauvaise entrée !");j_actu--;}
