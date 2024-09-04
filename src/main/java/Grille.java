@@ -1,6 +1,7 @@
 package main.java;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,15 +45,25 @@ class Grille {
         System.out.flush();
     }
 
-    @Override
-    public String toString() {
-        Grille.clear();
+    public String afficher(ArrayList<int[]> coupsPossible) {
+        //Grille.clear();
+        boolean flag = false;
         String res = "";
         res += "    ┏━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┓\n    ┃ A ┃ B ┃ C ┃ D ┃ E ┃ F ┃ G ┃ H ┃\n┏━━━╃───╀───╀───╀───╀───╀───╀───╀───┦\n┃ 1 ";
         for(int i=0;i<8;i++){
             res += "│ ";
             if(grille.get(0).get(i) == null){
-                res += "  ";
+                if(coupsPossible!=null){
+                    for(int ii=0;ii<coupsPossible.size();ii++){
+                        flag = true;
+                        if(Arrays.equals(new int[]{0,i},coupsPossible.get(ii)))
+                        res += ii+1 + " ";
+                    }
+                }
+                if(flag == false || coupsPossible == null){
+                    res += "  ";
+                }
+                flag = false;
             }
             else if(grille.get(0).get(i).couleur == Couleur.NOIR){
                 res += "⛀ ";
@@ -65,7 +76,17 @@ class Grille {
             for(int j=0;j<8;j++){
                 res += "│ ";
                 if(grille.get(i).get(j) == null){
-                    res += "  ";
+                    if(coupsPossible!=null){
+                        for(int ii=0;ii<coupsPossible.size();ii++){
+                            flag = true;
+                            if(Arrays.equals(new int[]{i,j},coupsPossible.get(ii)))
+                            res += ii+1 + " ";
+                        }
+                    }
+                    if(flag == false || coupsPossible == null){
+                        res += "  ";
+                    }
+                    flag = false;
                 }
                 else if(grille.get(i).get(j).couleur == Couleur.NOIR){
                     res += "⛀ ";
@@ -138,6 +159,16 @@ class Grille {
             c += directionColonne;
         }
         return false; // Pas de move possible dans cette direction
+    }
+
+    public ArrayList<int[]> coupsPossible(Grille g, Joueur player){
+        ArrayList<int[]> res = new ArrayList<>();
+        for(int i=0;i<8;i++){
+            for(int j=0;j<8;j++){
+                if(mouvementPossible(i, j, player)) res.add(new int[]{i,j});
+            }
+        }
+        return res;
     }
 
 

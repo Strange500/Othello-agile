@@ -18,19 +18,19 @@ public class Othello {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
-    public static int[] selectionCase(Grille g ) {
+    public int[] selectionCase(Grille g,ArrayList<int[]> tabCoups) {
+        tabCoups = g.coupsPossible(g, Intro.getJoueur1());
+        if(tabCoups.size() == 0){
+            tabCoups = null;
+            return null;
+        }
+
+        System.out.println("Choisissez le coup à effectuer (entre 1 et " + tabCoups.size() + ")");
+
         Scanner sc = new Scanner(System.in);
-        int[] tab = new int[2];
-        System.out.println("Veuillez saisir la ligne de la case choisie (A - H) : ");
-        tab[0] = toInt(sc.next().toUpperCase().charAt(0));
-        System.out.println("Veuillez saisir la colonne de la case choisie (1 - 8): ");
-        tab[1] = sc.nextInt() -1;
+        int[] tab = tabCoups.get(Integer.parseInt(sc.nextLine()) - 1);
         return tab;
         
-    }
-
-    private static int toInt(char c) {
-        return c - 'A';
     }
     
     public boolean jeuFini(){
@@ -71,26 +71,25 @@ public class Othello {
 
         Othello othello = new Othello();
         othello.plateau.initialise();
-        
-        //othello.plateau.afficher();
+        ArrayList<int[]> tabCoups = null;
+
         // boucle de jeu
         while (!othello.jeuFini()) {
-            System.out.println(othello.plateau.toString());
+            System.out.println(othello.plateau.afficher(tabCoups));
             System.out.println(othello.plateau.afficherScore());
             try{
                 System.out.println(Intro.getJoueur1());
-                int[] tab = selectionCase(othello.plateau);
-                System.out.println(tab[0] + " " + tab[1]);
-                if(othello.plateau.mouvementPossible(tab[0], tab[1], Intro.getJoueur1())){
+                int[] tab = othello.selectionCase(othello.plateau, tabCoups);
+                if(tab == null){ // Aucun mouvement possible
+                    // Todo: passer à l'autre joueur
+                }
+                else {
+                    System.out.println(tab[0] + " " + tab[1]);
                     othello.plateau.setCase(Intro.getJoueur1().getColor(), tab[0], tab[1]);
                 }
-                else{
-                    throw new IndexOutOfBoundsException();
-                }
-                
             }
-            catch(IndexOutOfBoundsException e){System.out.println("Mauvaise entré !");}
-            catch(InputMismatchException e){System.out.println("Mauvaise entréeeeeee !");}
+            catch(IndexOutOfBoundsException e){System.out.println("Mauvaise entrée !");}
+            catch(InputMismatchException e){System.out.println("Mauvaise entrée !");}
             finally{TimeUnit.SECONDS.sleep(1);}
             System.out.flush();
         }
