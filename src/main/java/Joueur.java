@@ -8,9 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 public class Joueur implements Serializable {
 
@@ -127,7 +125,6 @@ public class Joueur implements Serializable {
         j3.score = 10;
         savePlayer(j3);
         savePlayer(j2);
-        List<Joueur> list = getBestPlayers();
         
     }
 }

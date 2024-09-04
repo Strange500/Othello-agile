@@ -69,15 +69,6 @@ public class Othello {
         }
     }
 
-    
-    public void afficheBestPlayer(){
-        List<Joueur> bestPlayer = Joueur.getBestPlayers();
-        System.out.println("Meilleurs joueurs All-Time : ");
-        for (Joueur j : bestPlayer) {
-            System.out.println(j.toString() + " : " + j.score);
-        }
-    }
-
 
     public static void main(String[] args) throws InterruptedException, FileNotFoundException, IOException, MouvementException {
         // intro
