@@ -73,8 +73,8 @@ public class Othello {
         //  toDo
         try {
             Intro.affichage();
+            Intro.Start();
         } catch (IOException e) {
-            // TODO: handle exception
             System.out.println(e);
         }
 

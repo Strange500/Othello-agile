@@ -35,13 +35,30 @@ public class Intro {
             }
             
         }
+
+        try(BufferedReader br = new BufferedReader(new FileReader(new File("./src/main/ressources/txt/SelecMode.txt")))){
+            while(br.ready()){
+                System.out.println(br.readLine());
+            }   
+        }
+    }
+
+    public static void Start()  throws FileNotFoundException, IOException{
         Scanner scan = new Scanner(System.in);
+        String choix = scan.nextLine();
+        while(choix.length() == 0 || (choix.charAt(0) != '1' && choix.charAt(0) != '2')){
+            Intro.affichage();
+            choix = scan.nextLine();
+        }
+        Intro.clear();
         System.out.println("Veuillez choisir le PSEUDO du joueur 1 (Ayant les pions noirs) :  \n");
         String nom1 = scan.nextLine();
         joueurs.add(new Joueur(nom1, Couleur.NOIR));
-        System.out.println("Veuillez choisir le PSEUDO du joueur 2 (Ayant les pions blancs) :  \n");
-        String nom2 = scan.nextLine();
-        joueurs.add(new Joueur(nom2, Couleur.BLANC));
+        if(choix.charAt(0) == '1'){ //si le monde choisie est le pvp, cela crée alors un 2e joueur (donc il n'y a que 1 joueur si vs bot)
+            System.out.println("Veuillez choisir le PSEUDO du joueur 2 (Ayant les pions blancs) :  \n");
+            String nom2 = scan.nextLine();
+            joueurs.add(new Joueur(nom2, Couleur.BLANC));
+        }
         //scan.close();
     }
 
@@ -51,6 +68,10 @@ public class Intro {
 
     public static Joueur getJoueur2() {
         return joueurs.get(1);
+    }
+
+    public static int getNbJoueur(){
+        return joueurs.size();
     }
 
     public static void fin(Joueur j, int score) throws FileNotFoundException, IOException, InterruptedException{
