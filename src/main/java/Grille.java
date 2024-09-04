@@ -134,7 +134,6 @@ class Grille {
         setCase(Couleur.BLANC, 4, 4);
         setCase(Couleur.NOIR, 3, 4);
         setCase(Couleur.NOIR, 4, 3);
-        setCase(Couleur.BLANC, 3, 2);
     }
 
     public String afficherScore(){
