@@ -69,16 +69,6 @@ public class Othello {
         }
     }
 
-    
-    public void afficheBestPlayer(){
-        List<Joueur> bestPlayer = Joueur.getBestPlayers();
-        System.out.println("Meilleurs joueurs All-Time : ");
-        for (Joueur j : bestPlayer) {
-            System.out.println(j.toString() + " : " + j.score);
-        }
-    }
-
-
     public static void main(String[] args) throws InterruptedException, FileNotFoundException, IOException, MouvementException {
         // intro
         //  toDo
@@ -111,14 +101,9 @@ public class Othello {
                     throw new MouvementException();
                 }
             }
-<<<<<<< HEAD
-            catch(IndexOutOfBoundsException e){System.out.println("Mauvaise entré !"); j_actu --;}
-            catch(InputMismatchException e){System.out.println("Mauvaise entréeeeeee !"); j_actu --;}
-=======
             catch(IndexOutOfBoundsException e){System.out.println("Mauvaise entrée !");}
             catch(InputMismatchException e){System.out.println("Mauvaise entrée !");}
             catch(MouvementException e){System.out.println("Mouvement impossible !");}
->>>>>>> 738c4434fa893e61aaad91e6405526e778eb7470
             finally{TimeUnit.SECONDS.sleep(1);}
             System.out.flush();
             j_actu ++;
