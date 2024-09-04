@@ -45,25 +45,47 @@ class Grille {
         System.out.flush();
     }
 
-    public String afficher(ArrayList<int[]> coupsPossible) {
+    private List<int[]> ValidMoves(Grille g) {
+        List<int[]> ligne = new ArrayList<>();
+        for (int i = 0; i < g.grille.size(); i++) {
+            for (int j = 0; j < g.grille.get(i).size(); j++) {
+                if (g.mouvementPossible(i, i, this)) {
+                    ligne.add(new int[]{i, j});
+                }
+            }
+        }
+        return ligne;
+    }
+
+    private static boolean equalsCoordonate(int x1, int y1, int x2, int y2) {
+        return x1 == x2 && y1 == y2;
+    }
+
+    private static containsCoordonate(int x, int y, List<Int[]> coordonnates) {
+        boolean flag = false;
+        int cpt = 0;
+        while (!flag && cpt < coordonnates.size()) {
+            if (equalsCoordonate(x,y,coordonnates.get(cpt)[0], coordonnates.get(cpt)[1])) {
+                flag = true;
+            }
+            cpt++;
+        }
+        return flag;
+    }
+
+
+
+    public String afficher(Joueur j) {
         //Grille.clear();
         boolean flag = false;
         String res = "";
+        List<Int[]> flags = ValidMoves(grille, j);
         res += "    ┏━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┓\n    ┃ A ┃ B ┃ C ┃ D ┃ E ┃ F ┃ G ┃ H ┃\n┏━━━╃───╀───╀───╀───╀───╀───╀───╀───┦\n┃ 1 ";
         for(int i=0;i<8;i++){
             res += "│ ";
-            if(grille.get(0).get(i) == null){
-                if(coupsPossible!=null){
-                    for(int ii=0;ii<coupsPossible.size();ii++){
-                        flag = true;
-                        if(Arrays.equals(new int[]{0,i},coupsPossible.get(ii)))
-                        res += ii+1 + " ";
-                    }
-                }
-                if(flag == false || coupsPossible == null){
-                    res += "  ";
-                }
-                flag = false;
+            if(containsCoordonate(i, 0, flags)){
+                res+= "f ";
+                
             }
             else if(grille.get(0).get(i).couleur == Couleur.NOIR){
                 res += "⛀ ";
@@ -75,18 +97,9 @@ class Grille {
             res += "│\n┣━━━┽───┼───┼───┼───┼───┼───┼───┼───┤\n┃ " + (i+1) + " ";
             for(int j=0;j<8;j++){
                 res += "│ ";
-                if(grille.get(i).get(j) == null){
-                    if(coupsPossible!=null){
-                        for(int ii=0;ii<coupsPossible.size();ii++){
-                            flag = true;
-                            if(Arrays.equals(new int[]{i,j},coupsPossible.get(ii)))
-                            res += ii+1 + " ";
-                        }
-                    }
-                    if(flag == false || coupsPossible == null){
-                        res += "  ";
-                    }
-                    flag = false;
+                if(containsCoordonate(i, 0, flags)){
+                    res+= "f ";
+                
                 }
                 else if(grille.get(i).get(j).couleur == Couleur.NOIR){
                     res += "⛀ ";
