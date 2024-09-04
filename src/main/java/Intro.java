@@ -50,7 +50,7 @@ public class Intro {
         String choix = scan.nextLine();
         //Mode 1 contre ordinateur pas encore implémenté
         if(Integer.parseInt(choix)==2){
-            System.out.println("Coming soon... \n Appuyez sur n'importe quelle touche pour revenir en arrière.");
+            System.out.println("Coming soon... \n Appuyez sur Entrée pour revenir en arrière.");
             System.in.read();
             affichage();
             Start();
