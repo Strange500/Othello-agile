@@ -101,9 +101,9 @@ public class Othello {
                     throw new MouvementException();
                 }
             }
-            catch(IndexOutOfBoundsException e){System.out.println("Mauvaise entrée !");}
-            catch(InputMismatchException e){System.out.println("Mauvaise entrée !");}
-            catch(MouvementException e){System.out.println("Mouvement impossible !");}
+            catch(IndexOutOfBoundsException e){System.out.println("Mauvaise entrée !");j_actu--;}
+            catch(InputMismatchException e){System.out.println("Mauvaise entrée !"); j_actu--;}
+            catch(MouvementException e){System.out.println("Mouvement impossible !"); j_actu--;}
             finally{TimeUnit.SECONDS.sleep(1);}
             System.out.flush();
             j_actu ++;
