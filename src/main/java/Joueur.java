@@ -2,7 +2,6 @@ package main.java;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -43,7 +42,7 @@ public class Joueur implements Serializable {
     }
 
     public String toString() {
-        return this.getName() + ", couleur : " + this.getColor().toString().substring(0, 1)+this.getColor().toString().substring(1).toLowerCase();
+        return "Au tour de " + this.getName().toUpperCase() + "\nCouleur : " + this.getColor().toString().substring(0, 1)+this.getColor().toString().substring(1).toLowerCase() + "\n";
     }
 
     private static String makeFilename(String name) {
