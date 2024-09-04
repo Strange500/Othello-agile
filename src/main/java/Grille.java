@@ -9,6 +9,8 @@ import java.util.Map;
 class Grille {
 
     ArrayList<ArrayList<Pion>> grille;
+    public List<int[]> pionARetourner = new ArrayList<int[]>();
+
 
     public Grille() {
         grille = new ArrayList<ArrayList<Pion>>();
@@ -83,7 +85,7 @@ class Grille {
         res += "    ┏━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┓\n    ┃ A ┃ B ┃ C ┃ D ┃ E ┃ F ┃ G ┃ H ┃\n┏━━━╃───╀───╀───╀───╀───╀───╀───╀───┦\n┃ 1 ";
         for(int i=0;i<8;i++){
             res += "│ ";
-            if(grille.get(i).get(0) == null && containsCoordonate(0, i, flags)){
+            if(grille.get(0).get(i) == null && containsCoordonate(0, i, flags)){
                 res+= "⬚ ";
                 
             }
@@ -128,10 +130,11 @@ class Grille {
     }
 
     public void initialise() {
-        setCase(Couleur.NOIR, 3, 3);
-        setCase(Couleur.NOIR, 4, 4);
-        setCase(Couleur.BLANC, 3, 4);
-        setCase(Couleur.BLANC, 4, 3);
+        setCase(Couleur.BLANC, 3, 3);
+        setCase(Couleur.BLANC, 4, 4);
+        setCase(Couleur.NOIR, 3, 4);
+        setCase(Couleur.NOIR, 4, 3);
+        setCase(Couleur.BLANC, 3, 2);
     }
 
     public String afficherScore(){
@@ -153,11 +156,12 @@ class Grille {
         for (int directionLigne = -1; directionLigne <= 1; directionLigne++) {
             for (int directionColonne = -1; directionColonne <= 1; directionColonne++) {
                 if (directionLigne == 0 && directionColonne == 0) continue; // Skip la direction (0,0)
-
+                pionARetourner.clear();
                 if (checkDirection(joueur.getColor(), colAdverse, ligne, colonne, directionLigne, directionColonne)) {
                     return true;
                 }
             }
+
         }
         return false;
     }
@@ -169,10 +173,12 @@ class Grille {
 
         while (l >= 0 && l < 8 && c >= 0 && c < 8) {
             if (!isEmpty(l, c) && grille.get(l).get(c).couleur == colAdverse) {
+                pionARetourner.add(new int[]{c, l});
                 pieceAdverse = true;
             } else if (!isEmpty(l, c) && grille.get(l).get(c).couleur == playerColor) {
                 return pieceAdverse; // Valide si on trouve au moins une pièce adverse
             } else {
+                //pionARetourner.clear();
                 break; // Vide, on arrête d'aller dans cette direction
             }
             l += directionLigne;

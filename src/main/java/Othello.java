@@ -96,6 +96,10 @@ public class Othello {
                 int[] tab = selectionCase(othello.plateau);
                 System.out.println(tab[0] + " " + tab[1]);
                 if(othello.plateau.mouvementPossible(tab[1], tab[0], joueurCourrant)){
+                    for (int[] coord : othello.plateau.pionARetourner) {
+                        System.out.println(coord[0]+ " " +coord[1]);
+                        othello.plateau.setCase(joueurCourrant.getColor(), coord[0], coord[1]);
+                    }
                     othello.plateau.setCase(joueurCourrant.getColor(), tab[0], tab[1]);
                 }
                 else{
