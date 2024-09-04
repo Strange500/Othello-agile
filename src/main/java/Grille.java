@@ -135,6 +135,25 @@ class Grille {
         setCase(Couleur.NOIR, 3, 4);
         setCase(Couleur.NOIR, 4, 3);
     }
+    public void initialisetest() {
+        // blanc
+        setCase(Couleur.BLANC, 1, 1);
+        setCase(Couleur.BLANC, 2, 2);
+        setCase(Couleur.BLANC, 3, 1);
+        setCase(Couleur.BLANC, 3, 2);
+        setCase(Couleur.BLANC, 3, 3);
+        setCase(Couleur.BLANC, 4, 4);
+        setCase(Couleur.BLANC, 6, 1);
+
+        // noir
+        setCase(Couleur.NOIR, 1, 2);
+        setCase(Couleur.NOIR, 4, 2);
+        setCase(Couleur.NOIR, 5, 2);
+        setCase(Couleur.NOIR, 6, 2);
+        setCase(Couleur.NOIR, 3, 4);
+        setCase(Couleur.NOIR, 4, 3);
+        setCase(Couleur.NOIR, 4, 5);
+    }
 
     public String afficherScore(){
         String result = "";
