@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -58,6 +59,15 @@ public class Othello {
         return false;
     }
 
+    
+    public void afficheBestPlayer(){
+        List<Joueur> bestPlayer = Joueur.getBestPlayers();
+        System.out.println("Meilleurs joueurs All-Time : ");
+        for (Joueur j : bestPlayer) {
+            System.out.println(j.toString() + " : " + j.score);
+        }
+    }
+
     public static void main(String[] args) throws InterruptedException, FileNotFoundException, IOException {
         // intro
         //  toDo
@@ -102,9 +112,15 @@ public class Othello {
 
         if(othello.plateau.verifScore().get(Couleur.NOIR) > othello.plateau.verifScore().get(Couleur.BLANC)){
             Intro.fin(Intro.getJoueur1(), othello.plateau.verifScore().get(Couleur.NOIR));
+            Intro.getJoueur1().score = Intro.getJoueur1().score + 1;
         }else{
             Intro.fin(Intro.getJoueur2(), othello.plateau.verifScore().get(Couleur.BLANC));
+            Intro.getJoueur2().score = Intro.getJoueur2().score + 1;
         }
+        Joueur.savePlayer(Intro.getJoueur1());
+        Joueur.savePlayer(Intro.getJoueur2());
+
+        othello.afficheBestPlayer();
   
         
     }
