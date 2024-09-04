@@ -75,7 +75,6 @@ public class Othello {
         //othello.plateau.afficher();
         // boucle de jeu
         while (!othello.jeuFini()) {
-        while (!othello.jeuFini()) {
             System.out.println(othello.plateau.toString());
             System.out.println(othello.plateau.afficherScore());
             try{
@@ -84,9 +83,8 @@ public class Othello {
                 System.out.println(tab[0] + " " + tab[1]);
                 if(othello.plateau.mouvementPossible(tab[0], tab[1], Intro.getJoueur1())){
                     othello.plateau.setCase(Intro.getJoueur1().getColor(), tab[0], tab[1]);
-                if(othello.plateau.isEmpty(tab[1], tab[0])){
-                    othello.plateau.setCase(Couleur.NOIR, tab[0], tab[1]);
-                }else{
+                }
+                else{
                     throw new IndexOutOfBoundsException();
                 }
                 
@@ -109,3 +107,4 @@ public class Othello {
         
     }
 }
+    
