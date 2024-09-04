@@ -22,10 +22,10 @@ public class Othello {
     public static int[] selectionCase(Grille g ) {
         Scanner sc = new Scanner(System.in);
         int[] tab = new int[2];
-        System.out.println("Veuillez saisir la ligne de la case choisie (A - H) : ");
-        tab[0] = toInt(sc.next().toUpperCase().charAt(0));
-        System.out.println("Veuillez saisir la colonne de la case choisie (1 - 8): ");
-        tab[1] = sc.nextInt() -1;
+        System.out.println("Veuillez saisir la ligne de la case suivi de la colonne choisie (ex: A1) : ");
+        String tmp = sc.next().toUpperCase();
+        tab[0] = toInt(tmp.charAt(0));
+        tab[1] = tmp.charAt(1) - '0' - 1;
         return tab;
         
     }
@@ -73,6 +73,7 @@ public class Othello {
     public static void main(String[] args) throws InterruptedException, FileNotFoundException, IOException, MouvementException {
         // intro
         //  toDo
+        boolean cte = false;
         try {
             Intro.affichage();
             Intro.Start();
@@ -87,7 +88,7 @@ public class Othello {
         //othello.plateau.afficher();
         // boucle de jeu
         int j_actu = 0;
-        while (!othello.jeuFini()) {
+        while (!othello.jeuFini() && !cte) {
             System.out.println(othello.plateau.afficher(Intro.getJoueur(j_actu%2)));
             System.out.println(othello.plateau.afficherScore());
             Joueur joueurCourrant = Intro.getJoueur(j_actu%2);
@@ -95,15 +96,19 @@ public class Othello {
                 System.out.println(joueurCourrant);
                 int[] tab = selectionCase(othello.plateau);
                 System.out.println(tab[0] + " " + tab[1]);
-                if(othello.plateau.mouvementPossible(tab[1], tab[0], joueurCourrant)){
-                    for (int[] coord : othello.plateau.pionARetourner) {
-                        System.out.println(coord[0]+ " " +coord[1]);
-                        othello.plateau.setCase(joueurCourrant.getColor(), coord[0], coord[1]);
+                if(tab[0] == 8 && tab[1] == 8) cte = true;
+                if(!cte){
+                    if(othello.plateau.mouvementPossible(tab[1], tab[0], joueurCourrant)){
+                        for (int[] coord : othello.plateau.pionARetourner) {
+                            System.out.println(coord[0]+ " " +coord[1]);
+                            othello.plateau.setCase(joueurCourrant.getColor(), coord[0], coord[1]);
+                        }
+                        othello.plateau.setCase(joueurCourrant.getColor(), tab[0], tab[1]);
+
                     }
-                    othello.plateau.setCase(joueurCourrant.getColor(), tab[0], tab[1]);
-                }
-                else{
-                    throw new MouvementException();
+                    else{
+                        throw new MouvementException();
+                    }
                 }
             }
             catch(IndexOutOfBoundsException e){System.out.println("Mauvaise entrée !");j_actu--;}
