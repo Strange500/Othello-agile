@@ -43,6 +43,7 @@ public class Othello {
         return true;
     }
 
+    @SuppressWarnings("unused")
     private static boolean PionAdverseAdjacent(int x, int y, Couleur c, Grille g) {
         for (int i = x-1; i <= x+1; i++) {
             for (int j = y-1; j <= y+1; j++) {
@@ -68,7 +69,11 @@ public class Othello {
         }
     }
 
-    public static void main(String[] args) throws InterruptedException, FileNotFoundException, IOException {
+<<<<<<< HEAD
+
+=======
+>>>>>>> 621dfeed45d7d4a252eddb732a86fdc62b66e675
+    public static void main(String[] args) throws InterruptedException, FileNotFoundException, IOException, MouvementException {
         // intro
         //  toDo
         try {
@@ -83,26 +88,29 @@ public class Othello {
         othello.plateau.initialise();
         
         //othello.plateau.afficher();
-        //boucle de jeu
+        // boucle de jeu
+        int j_actu = 0;
         while (!othello.jeuFini()) {
             System.out.println(othello.plateau.toString());
             System.out.println(othello.plateau.afficherScore());
+            Joueur joueurCourrant = Intro.getJoueur(j_actu%2);
             try{
-                System.out.println(Intro.getJoueur1());
+                System.out.println(joueurCourrant);
                 int[] tab = selectionCase(othello.plateau);
                 System.out.println(tab[0] + " " + tab[1]);
-                if(othello.plateau.mouvementPossible(tab[0], tab[1], Intro.getJoueur1())){
-                    othello.plateau.setCase(Intro.getJoueur1().getColor(), tab[0], tab[1]);
+                if(othello.plateau.mouvementPossible(tab[0], tab[1], joueurCourrant)){
+                    othello.plateau.setCase(joueurCourrant.getColor(), tab[0], tab[1]);
                 }
                 else{
-                    throw new IndexOutOfBoundsException();
+                    throw new MouvementException();
                 }
-                
             }
-            catch(IndexOutOfBoundsException e){System.out.println("Mauvaise entré !");}
-            catch(InputMismatchException e){System.out.println("Mauvaise entréeeeeee !");}
+            catch(IndexOutOfBoundsException e){System.out.println("Mauvaise entrée !");j_actu--;}
+            catch(InputMismatchException e){System.out.println("Mauvaise entrée !"); j_actu--;}
+            catch(MouvementException e){System.out.println("Mouvement impossible !"); j_actu--;}
             finally{TimeUnit.SECONDS.sleep(1);}
             System.out.flush();
+            j_actu ++;
         }
 
         Joueur.savePlayer(Intro.getJoueur1());

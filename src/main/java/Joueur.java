@@ -2,16 +2,13 @@ package main.java;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 public class Joueur implements Serializable {
 
@@ -43,7 +40,7 @@ public class Joueur implements Serializable {
     }
 
     public String toString() {
-        return this.getName() + ", couleur : " + this.getColor().toString().substring(0, 1)+this.getColor().toString().substring(1).toLowerCase();
+        return "Au tour de " + this.getName().toUpperCase() + "\nCouleur : " + this.getColor().toString().substring(0, 1)+this.getColor().toString().substring(1).toLowerCase() + "\n";
     }
 
     private static String makeFilename(String name) {
@@ -128,7 +125,6 @@ public class Joueur implements Serializable {
         j3.score = 10;
         savePlayer(j3);
         savePlayer(j2);
-        List<Joueur> list = getBestPlayers();
         
     }
 }

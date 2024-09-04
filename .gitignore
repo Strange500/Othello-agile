@@ -1,1 +1,2 @@
-src/main/ressources/joueur/*.ser
+src/main/ressources/joueur
+src/main/ressources/joueur/*
