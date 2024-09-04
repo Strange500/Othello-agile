@@ -105,7 +105,7 @@ public class Othello {
                         for (int[] coord : othello.plateau.pionARetourner) {
                             System.out.println(coord[0]+ " " +coord[1]);
                             othello.plateau.setCase(joueurCourrant.getColor(), coord[0], coord[1]);
-                            r
+                            
                         }
                         othello.plateau.setCase(joueurCourrant.getColor(), tab[0], tab[1]);
 
