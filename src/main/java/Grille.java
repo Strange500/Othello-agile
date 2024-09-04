@@ -100,7 +100,8 @@ class Grille {
         score1 = verifScore().get(Couleur.NOIR).intValue();
         score2 = verifScore().get(Couleur.BLANC).intValue();
         result += "Le score des noirs est de " + score1 + "\n";
-        result += "Le score des blancs est de " + score2 + "\n";
+        result += "Le score des blancs est de " + score2 + "\n\n";
+        result += "Le score total est de " + (score1+score2) + "/64\n";
         return result;
     }
 
