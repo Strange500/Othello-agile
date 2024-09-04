@@ -47,7 +47,7 @@ class Grille {
         System.out.flush();
     }
 
-    private List<int[]> ValidMoves(Joueur joueur) {
+    public List<int[]> ValidMoves(Joueur joueur) {
         List<int[]> ligne = new ArrayList<>();
         for (int i = 0; i < grille.size(); i++) {
             for (int j = 0; j < grille.get(i).size(); j++) {
