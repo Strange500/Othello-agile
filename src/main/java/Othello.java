@@ -31,12 +31,13 @@ public class Othello {
         return c - 'A';
     }
     
-    public boolean jeuFini(){
+    public boolean jeuFini(int nbPlayerStuck){
         for(ArrayList<Pion> ligne : this.plateau.grille){
             for(Pion p : ligne){
                 if(p == null) return false;
             }
         }
+        if(nbPlayerStuck != 2) return false;
         return true;
     }
 
@@ -71,6 +72,7 @@ public class Othello {
         // intro
         //  toDo
         boolean cte = false;
+        int nbPlayerStuck = 0;
         try {
             Intro.affichage();
             Intro.Start();
@@ -85,7 +87,8 @@ public class Othello {
         //othello.plateau.afficher();
         // boucle de jeu
         int j_actu = 0;
-        while (!othello.jeuFini() && !cte) {
+        while (!othello.jeuFini(nbPlayerStuck) && !cte) {
+            boolean skip = false; //détermine si le joueur skip son tour
             System.out.println(othello.plateau.afficher(Intro.getJoueur(j_actu%2)));
             System.out.println(othello.plateau.afficherScore());
             Joueur joueurCourrant = Intro.getJoueur(j_actu%2);
@@ -96,7 +99,11 @@ public class Othello {
                     System.out.println(tab[0] + " " + tab[1]);
                     if(tab[0] == 8 && tab[1] == 8) cte = true;
                 }
-                if(!cte){
+                if(othello.plateau.ValidMoves(joueurCourrant).size() == 0) {
+                    nbPlayerStuck ++;
+                    skip = true;
+                } else nbPlayerStuck = 0;
+                if(!cte && !skip){
                     if(othello.plateau.mouvementPossible(tab[1], tab[0], joueurCourrant)){
                         othello.plateau.setCase(joueurCourrant.getColor(), tab[0], tab[1]);
                         ArrayList<int[]> tmp = new ArrayList<int[]>();
