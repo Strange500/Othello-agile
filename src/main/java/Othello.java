@@ -94,27 +94,34 @@ public class Othello {
         othello.plateau.initialise();
         
         //othello.plateau.afficher();
-        //boucle de jeu
+        // boucle de jeu
+        int j_actu = 0;
         while (!othello.jeuFini()) {
             System.out.println(othello.plateau.toString());
             System.out.println(othello.plateau.afficherScore());
+            Joueur joueurCourrant = Intro.getJoueur(j_actu%2);
             try{
-                System.out.println(Intro.getJoueur1());
+                System.out.println(joueurCourrant);
                 int[] tab = selectionCase(othello.plateau);
                 System.out.println(tab[0] + " " + tab[1]);
-                if(othello.plateau.mouvementPossible(tab[0], tab[1], Intro.getJoueur1())){
-                    othello.plateau.setCase(Intro.getJoueur1().getColor(), tab[0], tab[1]);
+                if(othello.plateau.mouvementPossible(tab[0], tab[1], joueurCourrant)){
+                    othello.plateau.setCase(joueurCourrant.getColor(), tab[0], tab[1]);
                 }
                 else{
                     throw new MouvementException();
                 }
-                
             }
+<<<<<<< HEAD
+            catch(IndexOutOfBoundsException e){System.out.println("Mauvaise entré !"); j_actu --;}
+            catch(InputMismatchException e){System.out.println("Mauvaise entréeeeeee !"); j_actu --;}
+=======
             catch(IndexOutOfBoundsException e){System.out.println("Mauvaise entrée !");}
             catch(InputMismatchException e){System.out.println("Mauvaise entrée !");}
             catch(MouvementException e){System.out.println("Mouvement impossible !");}
+>>>>>>> 738c4434fa893e61aaad91e6405526e778eb7470
             finally{TimeUnit.SECONDS.sleep(1);}
             System.out.flush();
+            j_actu ++;
         }
 
         Joueur.savePlayer(Intro.getJoueur1());

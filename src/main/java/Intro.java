@@ -70,6 +70,10 @@ public class Intro {
         return joueurs.get(1);
     }
 
+    public static Joueur getJoueur(int j){
+        return joueurs.get(j);
+    }
+
     public static int getNbJoueur(){
         return joueurs.size();
     }
