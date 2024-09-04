@@ -43,6 +43,7 @@ public class Othello {
         return true;
     }
 
+    @SuppressWarnings("unused")
     private static boolean PionAdverseAdjacent(int x, int y, Couleur c, Grille g) {
         for (int i = x-1; i <= x+1; i++) {
             for (int j = y-1; j <= y+1; j++) {
@@ -68,7 +69,17 @@ public class Othello {
         }
     }
 
-    public static void main(String[] args) throws InterruptedException, FileNotFoundException, IOException {
+    
+    public void afficheBestPlayer(){
+        List<Joueur> bestPlayer = Joueur.getBestPlayers();
+        System.out.println("Meilleurs joueurs All-Time : ");
+        for (Joueur j : bestPlayer) {
+            System.out.println(j.toString() + " : " + j.score);
+        }
+    }
+
+
+    public static void main(String[] args) throws InterruptedException, FileNotFoundException, IOException, MouvementException {
         // intro
         //  toDo
         try {
@@ -95,12 +106,13 @@ public class Othello {
                     othello.plateau.setCase(Intro.getJoueur1().getColor(), tab[0], tab[1]);
                 }
                 else{
-                    throw new IndexOutOfBoundsException();
+                    throw new MouvementException();
                 }
                 
             }
-            catch(IndexOutOfBoundsException e){System.out.println("Mauvaise entré !");}
-            catch(InputMismatchException e){System.out.println("Mauvaise entréeeeeee !");}
+            catch(IndexOutOfBoundsException e){System.out.println("Mauvaise entrée !");}
+            catch(InputMismatchException e){System.out.println("Mauvaise entrée !");}
+            catch(MouvementException e){System.out.println("Mouvement impossible !");}
             finally{TimeUnit.SECONDS.sleep(1);}
             System.out.flush();
         }
