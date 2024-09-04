@@ -83,7 +83,7 @@ class Grille {
         res += "    ┏━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┓\n    ┃ A ┃ B ┃ C ┃ D ┃ E ┃ F ┃ G ┃ H ┃\n┏━━━╃───╀───╀───╀───╀───╀───╀───╀───┦\n┃ 1 ";
         for(int i=0;i<8;i++){
             res += "│ ";
-            if(containsCoordonate(0, i, flags)){
+            if(grille.get(i).get(0) == null && containsCoordonate(0, i, flags)){
                 res+= "⬚ ";
                 
             }
@@ -100,7 +100,7 @@ class Grille {
             res += "│\n┣━━━┽───┼───┼───┼───┼───┼───┼───┼───┤\n┃ " + (i+1) + " ";
             for(int j=0;j<8;j++){
                 res += "│ ";
-                if(containsCoordonate(i, j, flags)){
+                if(grille.get(i).get(j) == null && containsCoordonate(i, j, flags)){
                     res+= "⬚ ";
                 
                 }
