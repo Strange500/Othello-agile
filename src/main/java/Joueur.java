@@ -106,7 +106,12 @@ public class Joueur implements Serializable {
         File[] files = new File(PATH).listFiles();
         List<Joueur >list = new ArrayList<>();
         for (int i = 0; i < files.length; i++) {
-            list.add(loadJoueur(files[i].getName().split(".ser")[0]));
+            if (files[i].isHidden()) {
+                continue;
+            }else {
+               list.add(loadJoueur(files[i].getName().split(".ser")[0])); 
+            }
+            
         }
         return sortPlayerList(list);
     }

@@ -66,7 +66,7 @@ public class Othello {
         List<Joueur> bestPlayer = Joueur.getBestPlayers();
         System.out.println("Meilleurs joueurs All-Time : ");
         for (Joueur j : bestPlayer) {
-            System.out.println(j.toString() + " : " + j.score);
+            System.out.println(j.name + " : " + j.score);
         }
     }
 
@@ -111,6 +111,7 @@ public class Othello {
                             System.out.println(othello.plateau.afficher(Intro.getJoueur(j_actu%2)));
                             TimeUnit.MILLISECONDS.sleep(1000);
                             othello.plateau.setCase(joueurCourrant.getColor(), coord[0], coord[1]);
+                            
                         }
                         Othello.clear();
                         System.out.println(othello.plateau.afficher(Intro.getJoueur(j_actu%2)));
