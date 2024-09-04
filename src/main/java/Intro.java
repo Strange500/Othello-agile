@@ -29,6 +29,8 @@ public class Intro {
             
         }
 
+        if(Othello.debugMode) System.out.println("[Debug Mode]");
+
         try(BufferedReader br = new BufferedReader(new FileReader(new File("./src/main/ressources/txt/Regles.txt")))){
             while(br.ready()){
                 System.out.println(br.readLine());

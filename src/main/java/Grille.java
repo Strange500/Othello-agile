@@ -79,7 +79,7 @@ class Grille {
 
 
     public String afficher(Joueur joueur) {
-        //Grille.clear();
+        if(!Othello.debugMode) Grille.clear();
         String res = "";
         List<int[]> flags = ValidMoves(joueur);
         res += "    ┏━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┓\n    ┃ A ┃ B ┃ C ┃ D ┃ E ┃ F ┃ G ┃ H ┃\n┏━━━╃───╀───╀───╀───╀───╀───╀───╀───┦\n┃ 1 ";

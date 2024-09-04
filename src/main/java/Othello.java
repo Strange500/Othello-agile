@@ -9,6 +9,7 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class Othello {
+    static boolean debugMode = true;
     Grille plateau;
 
     public Othello() {
@@ -25,7 +26,7 @@ public class Othello {
         System.out.println("Veuillez saisir la ligne de la case suivi de la colonne choisie (ex: A1) : ");
         String tmp = sc.next().toUpperCase();
         tab[0] = toInt(tmp.charAt(0));
-        tab[1] = tmp.charAt(1) - '0' - 1;
+        tab[1] = tmp.charAt(1) - '1';
         return tab;
         
     }
@@ -95,8 +96,10 @@ public class Othello {
             try{
                 System.out.println(joueurCourrant);
                 int[] tab = selectionCase(othello.plateau);
-                System.out.println(tab[0] + " " + tab[1]);
-                if(tab[0] == 8 && tab[1] == 8) cte = true;
+                if(debugMode){
+                    System.out.println(tab[0] + " " + tab[1]);
+                    if(tab[0] == 8 && tab[1] == 8) cte = true;
+                }
                 if(!cte){
                     if(othello.plateau.mouvementPossible(tab[1], tab[0], joueurCourrant)){
                         for (int[] coord : othello.plateau.pionARetourner) {
