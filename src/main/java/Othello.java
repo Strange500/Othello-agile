@@ -69,10 +69,7 @@ public class Othello {
         }
     }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 621dfeed45d7d4a252eddb732a86fdc62b66e675
     public static void main(String[] args) throws InterruptedException, FileNotFoundException, IOException, MouvementException {
         // intro
         //  toDo
