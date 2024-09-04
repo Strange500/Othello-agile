@@ -20,7 +20,7 @@ public class Othello {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
-    public static int[] selectionCase(Grille g ) {
+    public static int[] selectionCase(Grille g) {
         Scanner sc = new Scanner(System.in);
         int[] tab = new int[2];
         System.out.println("Veuillez saisir la ligne de la case suivi de la colonne choisie (ex: A1) : ");
@@ -96,7 +96,7 @@ public class Othello {
             Joueur joueurCourrant = Intro.getJoueur(j_actu%2);
             try{
                 System.out.println(joueurCourrant);
-                int[] tab = selectionCase(othello.plateau);
+                int[] tab = Intro.getJoueur(j_actu%2).selectionCase(othello.plateau);
                 if(debugMode){
                     System.out.println(tab[0] + " " + tab[1]);
                     if(tab[0] == 8 && tab[1] == 8) cte = true;
@@ -131,8 +131,7 @@ public class Othello {
             j_actu ++;
         }
 
-        Joueur.savePlayer(Intro.getJoueur1());
-        Joueur.savePlayer(Intro.getJoueur2());
+        
 
         if(othello.plateau.verifScore().get(Couleur.NOIR) > othello.plateau.verifScore().get(Couleur.BLANC)){
             Intro.fin(Intro.getJoueur1(), othello.plateau.verifScore().get(Couleur.NOIR));

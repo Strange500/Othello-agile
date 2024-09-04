@@ -49,12 +49,12 @@ public class Intro {
         Scanner scan = new Scanner(System.in);
         String choix = scan.nextLine();
         //Mode 1 contre ordinateur pas encore implémenté
-        if(Integer.parseInt(choix)==2){
-            System.out.println("Coming soon... \n Appuyez sur Entrée pour revenir en arrière.");
-            System.in.read();
-            affichage();
-            Start();
-        }
+        // if(Integer.parseInt(choix)==2){
+        //     System.out.println("Coming soon... \n Appuyez sur Entrée pour revenir en arrière.");
+        //     System.in.read();
+        //     affichage();
+        //     Start();
+        // }
         while(choix.length() == 0 || (choix.charAt(0) != '1' && choix.charAt(0) != '2')){
             Intro.affichage();
             choix = scan.nextLine();
@@ -67,6 +67,9 @@ public class Intro {
             System.out.println("Veuillez choisir le PSEUDO du joueur 2 (Ayant les pions blancs) :  \n");
             String nom2 = scan.nextLine();
             joueurs.add(new Joueur(nom2, Couleur.BLANC));
+        }
+        else if(choix.charAt(0) == '2'){ //si le monde choisie est le pvp, cela crée alors un 2e joueur (donc il n'y a que 1 joueur si vs bot)
+            joueurs.add(new Bot(Couleur.BLANC));
         }
         //scan.close();
     }
@@ -102,5 +105,4 @@ public class Intro {
     public static void main(String[] args) throws FileNotFoundException, IOException {
 
     }
-
 }
