@@ -90,6 +90,7 @@ public class Othello {
         // boucle de jeu
         int j_actu = 0;
         while (!othello.jeuFini() && !cte) {
+            Othello.clear();
             System.out.println(othello.plateau.afficher(Intro.getJoueur(j_actu%2)));
             System.out.println(othello.plateau.afficherScore());
             Joueur joueurCourrant = Intro.getJoueur(j_actu%2);
@@ -102,16 +103,23 @@ public class Othello {
                 }
                 if(!cte){
                     if(othello.plateau.mouvementPossible(tab[1], tab[0], joueurCourrant)){
-                        for (int[] coord : othello.plateau.pionARetourner) {
-                            System.out.println(coord[0]+ " " +coord[1]);
+                        othello.plateau.setCase(joueurCourrant.getColor(), tab[0], tab[1]);
+                        ArrayList<int[]> tmp = new ArrayList<int[]>();
+                        tmp.addAll(othello.plateau.pionARetourner);
+                        for (int[] coord : tmp) {
+                            Othello.clear();
+                            System.out.println(othello.plateau.afficher(Intro.getJoueur(j_actu%2)));
+                            TimeUnit.MILLISECONDS.sleep(1000);
                             othello.plateau.setCase(joueurCourrant.getColor(), coord[0], coord[1]);
                         }
-                        othello.plateau.setCase(joueurCourrant.getColor(), tab[0], tab[1]);
-
+                        Othello.clear();
+                        System.out.println(othello.plateau.afficher(Intro.getJoueur(j_actu%2)));
                     }
                     else{
                         throw new MouvementException();
                     }
+
+                        
                 }
             }
             catch(IndexOutOfBoundsException e){System.out.println("Mauvaise entrée !");j_actu--;}
