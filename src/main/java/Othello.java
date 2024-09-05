@@ -86,7 +86,7 @@ public class Othello {
 
 
         Othello othello = new Othello();
-        othello.plateau.initialisetest();
+        othello.plateau.initialise/*test*/();
         
         //othello.plateau.afficher();
         // boucle de jeu
@@ -99,33 +99,33 @@ public class Othello {
             System.out.println(othello.plateau.mouvementPossible(3, 2, joueurCourrant));
             try{
                 System.out.println(joueurCourrant);
-                int[] tab = Intro.getJoueur(j_actu%2).selectionCase(othello.plateau);
-                if(debugMode){
-                    System.out.println(tab[0] + " " + tab[1]);
-                    if(tab[0] == 8 && tab[1] == 8) cte = true;
-                }
                 if(othello.plateau.ValidMoves(joueurCourrant).size() == 0) {
                     nbPlayerStuck ++;
                     skip = true;
                 } else nbPlayerStuck = 0;
-                if(!cte && !skip){
-                    if(othello.plateau.mouvementPossible(tab[1], tab[0], joueurCourrant)){
-                        othello.plateau.setCase(joueurCourrant.getColor(), tab[0], tab[1]);
-                        ArrayList<int[]> tmp = new ArrayList<int[]>();
-                        tmp.addAll(othello.plateau.pionARetourner);
-                        for (int[] coord : tmp) {
+                if(!skip){
+                    int[] tab = Intro.getJoueur(j_actu%2).selectionCase(othello.plateau);
+                    if(debugMode){
+                        System.out.println(tab[0] + " " + tab[1]);
+                        if(tab[0] == 8 && tab[1] == 8) cte = true;
+                    }
+                    if(!cte){
+                        if(othello.plateau.mouvementPossible(tab[1], tab[0], joueurCourrant)){
+                            othello.plateau.setCase(joueurCourrant.getColor(), tab[0], tab[1]);
+                            ArrayList<int[]> tmp = new ArrayList<int[]>();
+                            tmp.addAll(othello.plateau.pionARetourner);
+                            for (int[] coord : tmp) {
+                                System.out.println(othello.plateau.afficher(Intro.getJoueur(j_actu%2)));
+                                TimeUnit.MILLISECONDS.sleep(500);
+                                othello.plateau.setCase(joueurCourrant.getColor(), coord[0], coord[1]);
+                                
+                            }
                             System.out.println(othello.plateau.afficher(Intro.getJoueur(j_actu%2)));
-                            TimeUnit.MILLISECONDS.sleep(500);
-                            othello.plateau.setCase(joueurCourrant.getColor(), coord[0], coord[1]);
-                            
                         }
-                        System.out.println(othello.plateau.afficher(Intro.getJoueur(j_actu%2)));
-                    }
-                    else{
-                        throw new MouvementException();
-                    }
-
-                        
+                        else{
+                            throw new MouvementException();
+                        }
+                }         
                 }
             }
             catch(IndexOutOfBoundsException e){System.out.println("Mauvaise entrée !");j_actu--;}
