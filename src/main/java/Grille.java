@@ -86,7 +86,7 @@ class Grille {
         for(int i=0;i<8;i++){
             res += "│ ";
             if(grille.get(0).get(i) == null && containsCoordonate(0, i, flags)){
-                res+= "⬚ ";
+                res+= "\u001B[42m \u001B[0m ";
                 
             }
             else if (grille.get(0).get(i) == null){
@@ -104,7 +104,7 @@ class Grille {
                 res += "│ ";
                 
                 if(grille.get(i).get(j) == null && containsCoordonate(i, j, flags)){
-                    res+= "⬚ ";
+                    res+= "\u001B[42m \u001B[0m ";
                 
                 }
                 else if (grille.get(i).get(j) == null){
