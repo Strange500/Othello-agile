@@ -5,9 +5,10 @@ import java.util.List;
 import java.util.Random;
 
 public class Bot extends Joueur {
+    private static int cpt = 1;
 
     public Bot(Couleur c) {
-        super("Bot", c);
+        super("Bot" + cpt++, c);
     }
 
     public int[] selectionCase(Grille g) {

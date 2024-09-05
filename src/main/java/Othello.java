@@ -114,7 +114,7 @@ public class Othello {
                         tmp.addAll(othello.plateau.pionARetourner);
                         for (int[] coord : tmp) {
                             System.out.println(othello.plateau.afficher(Intro.getJoueur(j_actu%2)));
-                            TimeUnit.MILLISECONDS.sleep(1000);
+                            TimeUnit.MILLISECONDS.sleep(500);
                             othello.plateau.setCase(joueurCourrant.getColor(), coord[0], coord[1]);
                             
                         }
