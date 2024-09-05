@@ -35,7 +35,7 @@ public class UseOthello {
         while (!othello.jeuFini(nbPlayerStuck) && !cte) {
             boolean skip = false; //détermine si le joueur skip son tour
             Joueur joueurCourrant = Intro.getJoueur(j_actu%2);
-            System.out.println(othello.plateau.afficher(joueurCourrant));
+            System.out.println(othello.plateau.afficher(joueurCourrant, true));
             System.out.println(othello.plateau.afficherScore());
             try{
                 System.out.println(joueurCourrant);
@@ -57,12 +57,12 @@ public class UseOthello {
                                 tmp.addAll(coords);
                             }
                             for (int[] coord : tmp) {
-                                System.out.println(othello.plateau.afficher(joueurCourrant));
+                                System.out.println(othello.plateau.afficher(joueurCourrant, false));
                                 TimeUnit.MILLISECONDS.sleep(500);
                                 othello.plateau.setCase(joueurCourrant.getColor(), coord[0], coord[1]);
                                 
                             }
-                            System.out.println(othello.plateau.afficher(joueurCourrant));
+                            System.out.println(othello.plateau.afficher(joueurCourrant, false));
                         }
                         else{
                             throw new MouvementException();
