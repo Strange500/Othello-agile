@@ -78,14 +78,14 @@ class Grille {
 
 
 
-    public String afficher(Joueur joueur) {
+    public String afficher(Joueur joueur, boolean showMoves) {
         Grille.clear();
         String res = "";
         List<int[]> flags = ValidMoves(joueur);
         res += "    ┏━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┓\n    ┃ A ┃ B ┃ C ┃ D ┃ E ┃ F ┃ G ┃ H ┃\n┏━━━╃───╀───╀───╀───╀───╀───╀───╀───┦\n┃ 1 ";
         for(int i=0;i<8;i++){
             res += "│ ";
-            if(grille.get(0).get(i) == null && containsCoordonate(0, i, flags)){
+            if(grille.get(0).get(i) == null && containsCoordonate(0, i, flags) && showMoves){
                 res+= "\u001B[42m \u001B[0m ";
                 
             }
@@ -103,7 +103,7 @@ class Grille {
             for(int j=0;j<8;j++){
                 res += "│ ";
                 
-                if(grille.get(i).get(j) == null && containsCoordonate(i, j, flags)){
+                if(grille.get(i).get(j) == null && containsCoordonate(i, j, flags) && showMoves){
                     res+= "\u001B[42m \u001B[0m ";
                 
                 }
