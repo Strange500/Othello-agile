@@ -86,16 +86,16 @@ public class Othello {
 
 
         Othello othello = new Othello();
-        othello.plateau.initialise/*test*/();
+        othello.plateau.initialiseTestValideMove/*test*/();
         
         //othello.plateau.afficher();
         // boucle de jeu
         int j_actu = 0;
         while (!othello.jeuFini(nbPlayerStuck) && !cte) {
             boolean skip = false; //détermine si le joueur skip son tour
-            System.out.println(othello.plateau.afficher(Intro.getJoueur(j_actu%2)));
-            System.out.println(othello.plateau.afficherScore());
             Joueur joueurCourrant = Intro.getJoueur(j_actu%2);
+            System.out.println(othello.plateau.afficher(joueurCourrant));
+            System.out.println(othello.plateau.afficherScore());
             System.out.println(othello.plateau.mouvementPossible(3, 2, joueurCourrant));
             try{
                 System.out.println(joueurCourrant);
@@ -104,7 +104,7 @@ public class Othello {
                     skip = true;
                 } else nbPlayerStuck = 0;
                 if(!skip){
-                    int[] tab = Intro.getJoueur(j_actu%2).selectionCase(othello.plateau);
+                    int[] tab = joueurCourrant.selectionCase(othello.plateau);
                     if(debugMode){
                         System.out.println(tab[0] + " " + tab[1]);
                         if(tab[0] == 8 && tab[1] == 8) cte = true;
@@ -115,17 +115,20 @@ public class Othello {
                             ArrayList<int[]> tmp = new ArrayList<int[]>();
                             tmp.addAll(othello.plateau.pionARetourner);
                             for (int[] coord : tmp) {
-                                System.out.println(othello.plateau.afficher(Intro.getJoueur(j_actu%2)));
+                                System.out.println(othello.plateau.afficher(joueurCourrant));
                                 TimeUnit.MILLISECONDS.sleep(500);
                                 othello.plateau.setCase(joueurCourrant.getColor(), coord[0], coord[1]);
                                 
                             }
-                            System.out.println(othello.plateau.afficher(Intro.getJoueur(j_actu%2)));
+                            System.out.println(othello.plateau.afficher(joueurCourrant));
                         }
                         else{
                             throw new MouvementException();
                         }
-                }         
+                    }         
+                } else {
+                    System.out.println("Can't Move !");
+                    TimeUnit.SECONDS.sleep(1);
                 }
             }
             catch(IndexOutOfBoundsException e){System.out.println("Mauvaise entrée !");j_actu--;}
