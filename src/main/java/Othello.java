@@ -86,7 +86,7 @@ public class Othello {
 
 
         Othello othello = new Othello();
-        othello.plateau.initialise();
+        othello.plateau.initialisetest();
         
         //othello.plateau.afficher();
         // boucle de jeu
@@ -96,6 +96,7 @@ public class Othello {
             System.out.println(othello.plateau.afficher(Intro.getJoueur(j_actu%2)));
             System.out.println(othello.plateau.afficherScore());
             Joueur joueurCourrant = Intro.getJoueur(j_actu%2);
+            System.out.println(othello.plateau.mouvementPossible(3, 2, joueurCourrant));
             try{
                 System.out.println(joueurCourrant);
                 int[] tab = Intro.getJoueur(j_actu%2).selectionCase(othello.plateau);
