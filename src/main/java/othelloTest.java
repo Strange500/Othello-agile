@@ -16,7 +16,28 @@ public class othelloTest {
     }
     
     @Test
-    
+    public void testToInt() {
+        assertEquals(0, Othello.toInt('A'));
+        assertEquals(1, Othello.toInt('B'));
+        assertEquals(2, Othello.toInt('C'));
+        assertEquals(3, Othello.toInt('D'));
+        assertEquals(4, Othello.toInt('E'));
+        assertEquals(5, Othello.toInt('F'));
+        assertEquals(6, Othello.toInt('G'));
+        assertEquals(7, Othello.toInt('H'));
+    }
+
+    @Test
+    public void testJeuFini() {
+        Othello o = new Othello();
+        assertFalse(o.jeuFini(0));
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                o.plateau.setCase(Couleur.NOIR, i, j);
+            }
+        }
+        assertTrue(o.jeuFini(2));
+    }
 
     
 
