@@ -157,6 +157,30 @@ class Grille {
         setCase(Couleur.NOIR, 4, 3);
         setCase(Couleur.NOIR, 4, 5);
     }
+
+    public void initialiseTestValideMove(){
+        setCase(Couleur.NOIR, 5, 5);
+        setCase(Couleur.NOIR, 3, 5);
+        setCase(Couleur.NOIR, 7, 5);
+        setCase(Couleur.NOIR, 5, 3);
+        setCase(Couleur.NOIR, 5, 7);
+        setCase(Couleur.NOIR, 3, 3);
+        setCase(Couleur.NOIR, 3, 7);
+        setCase(Couleur.NOIR, 7, 3);
+        setCase(Couleur.NOIR, 7, 7);
+
+        setCase(Couleur.BLANC, 4, 5);
+        setCase(Couleur.BLANC, 4, 6);
+        setCase(Couleur.BLANC, 5, 4);
+        setCase(Couleur.BLANC, 5, 6);
+        setCase(Couleur.BLANC, 4, 4);
+        setCase(Couleur.BLANC, 4, 6);
+        setCase(Couleur.BLANC, 6, 4);
+        setCase(Couleur.BLANC, 6, 6);
+        setCase(Couleur.BLANC, 6, 5);
+
+    }
+
     public String afficherScore(){
         String result = "";
         int score1, score2;
@@ -193,6 +217,7 @@ class Grille {
         int l = ligne + directionLigne;
         int c = colonne + directionColonne;
         boolean pieceAdverse = false;
+        boolean cleanExit = false;
         pionARetourner.add(new ArrayList<>());
 
         while (l >= 0 && l < 8 && c >= 0 && c < 8) {
@@ -208,6 +233,7 @@ class Grille {
             l += directionLigne;
             c += directionColonne;
         }
+        pionARetourner.get(cpt).clear();
         return false; // Pas de move possible dans cette direction
     }
 
