@@ -20,7 +20,7 @@ public class Othello {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
-    public static int[] selectionCase(Grille g ) {
+    public static int[] selectionCase(Grille g) {
         Scanner sc = new Scanner(System.in);
         int[] tab = new int[2];
         System.out.println("Veuillez saisir la ligne de la case suivi de la colonne choisie (ex: A1) : ");
@@ -35,12 +35,13 @@ public class Othello {
         return c - 'A';
     }
     
-    public boolean jeuFini(){
+    public boolean jeuFini(int nbPlayerStuck){
         for(ArrayList<Pion> ligne : this.plateau.grille){
             for(Pion p : ligne){
                 if(p == null) return false;
             }
         }
+        if(nbPlayerStuck != 2) return false;
         return true;
     }
 
@@ -75,6 +76,7 @@ public class Othello {
         // intro
         //  toDo
         boolean cte = false;
+        int nbPlayerStuck = 0;
         try {
             Intro.affichage();
             Intro.Start();
@@ -84,36 +86,39 @@ public class Othello {
 
 
         Othello othello = new Othello();
-        othello.plateau.initialise();
+        othello.plateau.initialisetest();
         
         //othello.plateau.afficher();
         // boucle de jeu
         int j_actu = 0;
-        while (!othello.jeuFini() && !cte) {
-            Othello.clear();
+        while (!othello.jeuFini(nbPlayerStuck) && !cte) {
+            boolean skip = false; //détermine si le joueur skip son tour
             System.out.println(othello.plateau.afficher(Intro.getJoueur(j_actu%2)));
             System.out.println(othello.plateau.afficherScore());
             Joueur joueurCourrant = Intro.getJoueur(j_actu%2);
+            System.out.println(othello.plateau.mouvementPossible(3, 2, joueurCourrant));
             try{
                 System.out.println(joueurCourrant);
-                int[] tab = selectionCase(othello.plateau);
+                int[] tab = Intro.getJoueur(j_actu%2).selectionCase(othello.plateau);
                 if(debugMode){
                     System.out.println(tab[0] + " " + tab[1]);
                     if(tab[0] == 8 && tab[1] == 8) cte = true;
                 }
-                if(!cte){
+                if(othello.plateau.ValidMoves(joueurCourrant).size() == 0) {
+                    nbPlayerStuck ++;
+                    skip = true;
+                } else nbPlayerStuck = 0;
+                if(!cte && !skip){
                     if(othello.plateau.mouvementPossible(tab[1], tab[0], joueurCourrant)){
                         othello.plateau.setCase(joueurCourrant.getColor(), tab[0], tab[1]);
                         ArrayList<int[]> tmp = new ArrayList<int[]>();
                         tmp.addAll(othello.plateau.pionARetourner);
                         for (int[] coord : tmp) {
-                            Othello.clear();
                             System.out.println(othello.plateau.afficher(Intro.getJoueur(j_actu%2)));
                             TimeUnit.MILLISECONDS.sleep(1000);
                             othello.plateau.setCase(joueurCourrant.getColor(), coord[0], coord[1]);
                             
                         }
-                        Othello.clear();
                         System.out.println(othello.plateau.afficher(Intro.getJoueur(j_actu%2)));
                     }
                     else{
@@ -131,8 +136,7 @@ public class Othello {
             j_actu ++;
         }
 
-        Joueur.savePlayer(Intro.getJoueur1());
-        Joueur.savePlayer(Intro.getJoueur2());
+        
 
         if(othello.plateau.verifScore().get(Couleur.NOIR) > othello.plateau.verifScore().get(Couleur.BLANC)){
             Intro.fin(Intro.getJoueur1(), othello.plateau.verifScore().get(Couleur.NOIR));

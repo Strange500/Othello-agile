@@ -47,7 +47,7 @@ class Grille {
         System.out.flush();
     }
 
-    private List<int[]> ValidMoves(Joueur joueur) {
+    public List<int[]> ValidMoves(Joueur joueur) {
         List<int[]> ligne = new ArrayList<>();
         for (int i = 0; i < grille.size(); i++) {
             for (int j = 0; j < grille.get(i).size(); j++) {
@@ -79,7 +79,7 @@ class Grille {
 
 
     public String afficher(Joueur joueur) {
-        if(!Othello.debugMode) Grille.clear();
+        Grille.clear();
         String res = "";
         List<int[]> flags = ValidMoves(joueur);
         res += "    ┏━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┓\n    ┃ A ┃ B ┃ C ┃ D ┃ E ┃ F ┃ G ┃ H ┃\n┏━━━╃───╀───╀───╀───╀───╀───╀───╀───┦\n┃ 1 ";
@@ -102,6 +102,7 @@ class Grille {
             res += "│\n┣━━━┽───┼───┼───┼───┼───┼───┼───┼───┤\n┃ " + (i+1) + " ";
             for(int j=0;j<8;j++){
                 res += "│ ";
+                
                 if(grille.get(i).get(j) == null && containsCoordonate(i, j, flags)){
                     res+= "⬚ ";
                 
@@ -135,6 +136,26 @@ class Grille {
         setCase(Couleur.NOIR, 3, 4);
         setCase(Couleur.NOIR, 4, 3);
     }
+    public void initialisetest() {
+        // creer une situation avec le bug 
+        // blanc
+        setCase(Couleur.BLANC, 1, 1);
+        setCase(Couleur.BLANC, 2, 2);
+        setCase(Couleur.BLANC, 3, 1);
+        setCase(Couleur.BLANC, 3, 2);
+        setCase(Couleur.BLANC, 3, 3);
+        setCase(Couleur.BLANC, 4, 4);
+        setCase(Couleur.BLANC, 6, 1);
+
+        // noir
+        setCase(Couleur.NOIR, 1, 2);
+        setCase(Couleur.NOIR, 4, 2);
+        setCase(Couleur.NOIR, 5, 2);
+        setCase(Couleur.NOIR, 6, 2);
+        setCase(Couleur.NOIR, 3, 4);
+        setCase(Couleur.NOIR, 4, 3);
+        setCase(Couleur.NOIR, 4, 5);
+    }
 
     public String afficherScore(){
         String result = "";
@@ -149,7 +170,7 @@ class Grille {
 
     public boolean mouvementPossible(int ligne, int colonne, Joueur joueur){
         Couleur colAdverse = (joueur.getColor() == Couleur.NOIR) ? Couleur.BLANC : Couleur.NOIR;
-        if(!isEmpty(colonne, ligne)) return false;
+        if(!isEmpty(ligne, colonne)) return false;
 
         // Check les 8 directions
         for (int directionLigne = -1; directionLigne <= 1; directionLigne++) {
@@ -178,7 +199,7 @@ class Grille {
                 return pieceAdverse; // Valide si on trouve au moins une pièce adverse
             } else {
                 //pionARetourner.clear();
-                break; // Vide, on arrête d'aller dans cette direction
+                return false; // Vide, on arrête d'aller dans cette direction
             }
             l += directionLigne;
             c += directionColonne;
