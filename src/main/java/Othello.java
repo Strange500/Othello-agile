@@ -86,7 +86,7 @@ public class Othello {
 
 
         Othello othello = new Othello();
-        othello.plateau.initialiseTestValideMove/*test*/();
+        othello.plateau.initialise/*TestValideMove*//*test*/();
         
         //othello.plateau.afficher();
         // boucle de jeu
