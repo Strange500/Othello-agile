@@ -55,20 +55,27 @@ public class Intro {
         //     affichage();
         //     Start();
         // }
-        while(choix.length() == 0 || (choix.charAt(0) != '1' && choix.charAt(0) != '2')){
+        while(choix.length() == 0 || (choix.charAt(0) != '1' && choix.charAt(0) != '2' && choix.charAt(0) != '3')){
             Intro.affichage();
             choix = scan.nextLine();
         }
         Intro.clear();
-        System.out.println("Veuillez choisir le PSEUDO du joueur 1 (Ayant les pions noirs) :  \n");
-        String nom1 = scan.nextLine();
-        joueurs.add(new Joueur(nom1, Couleur.NOIR));
-        if(choix.charAt(0) == '1'){ //si le monde choisie est le pvp, cela crée alors un 2e joueur (donc il n'y a que 1 joueur si vs bot)
-            System.out.println("Veuillez choisir le PSEUDO du joueur 2 (Ayant les pions blancs) :  \n");
-            String nom2 = scan.nextLine();
-            joueurs.add(new Joueur(nom2, Couleur.BLANC));
+        if (choix.charAt(0) == '1' || choix.charAt(0) == '2') {
+            System.out.println("Veuillez choisir le PSEUDO du joueur 1 (Ayant les pions noirs) :  \n");
+            String nom1 = scan.nextLine();
+            joueurs.add(new Joueur(nom1, Couleur.NOIR));
+            if(choix.charAt(0) == '1'){ //si le monde choisie est le pvp, cela crée alors un 2e joueur (donc il n'y a que 1 joueur si vs bot)
+                System.out.println("Veuillez choisir le PSEUDO du joueur 2 (Ayant les pions blancs) :  \n");
+                String nom2 = scan.nextLine();
+                joueurs.add(new Joueur(nom2, Couleur.BLANC));
         }
-        else if(choix.charAt(0) == '2'){ //si le monde choisie est le pvp, cela crée alors un 2e joueur (donc il n'y a que 1 joueur si vs bot)
+            else if(choix.charAt(0) == '2'){ //si le monde choisie est le pvp, cela crée alors un 2e joueur (donc il n'y a que 1 joueur si vs bot)
+                joueurs.add(new Bot(Couleur.BLANC));
+            }
+            }
+ 
+        else if(choix.charAt(0) == '3'){ 
+            joueurs.add(new Bot(Couleur.NOIR));
             joueurs.add(new Bot(Couleur.BLANC));
         }
         //scan.close();
