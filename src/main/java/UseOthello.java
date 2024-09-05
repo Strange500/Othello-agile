@@ -7,8 +7,6 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.platform.console.shadow.picocli.CommandLine.ExecutionException;
-
 public class UseOthello {
 
     public static void main(String[] args) throws InterruptedException, FileNotFoundException, IOException, MouvementException {
