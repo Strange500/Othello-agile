@@ -1,3 +1,4 @@
 src/main/ressources/joueur
 src/main/ressources/joueur/*
 .vscode/settings.json
+.*
