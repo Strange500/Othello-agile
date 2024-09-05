@@ -95,7 +95,7 @@ public class Intro {
             }
             
         }
-        System.out.println("\tLe joueur " + j.getName() + " vient de gagner la partie avec un score de " + score + " points");
+        System.out.println("\t\t\t\tLe joueur " + j.getName() + " vient de gagner la partie avec un score de " + score + " points");
 
     }
 
