@@ -50,7 +50,6 @@ public class Othello {
         for (int i = x-1; i <= x+1; i++) {
             for (int j = y-1; j <= y+1; j++) {
                 if (i >= 0 && i < 8 && j >= 0 && j < 8 && !(i == x && j == y)) {
-                    System.out.println(i + " " + j);
                     if (g.getCase(i, j) == null) {
                         continue;
                     } else if (g.getCase(i, j).couleur != c) {
@@ -96,7 +95,6 @@ public class Othello {
             Joueur joueurCourrant = Intro.getJoueur(j_actu%2);
             System.out.println(othello.plateau.afficher(joueurCourrant));
             System.out.println(othello.plateau.afficherScore());
-            System.out.println(othello.plateau.mouvementPossible(3, 2, joueurCourrant));
             try{
                 System.out.println(joueurCourrant);
                 if(othello.plateau.ValidMoves(joueurCourrant).size() == 0) {

@@ -217,6 +217,7 @@ class Grille {
         int l = ligne + directionLigne;
         int c = colonne + directionColonne;
         boolean pieceAdverse = false;
+        boolean cleanExit = false;
         pionARetourner.add(new ArrayList<>());
 
         while (l >= 0 && l < 8 && c >= 0 && c < 8) {
@@ -232,6 +233,7 @@ class Grille {
             l += directionLigne;
             c += directionColonne;
         }
+        pionARetourner.get(cpt).clear();
         return false; // Pas de move possible dans cette direction
     }
 
