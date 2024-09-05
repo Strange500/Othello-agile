@@ -9,7 +9,7 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class Othello {
-    static boolean debugMode = true;
+    static boolean debugMode = false;
     Grille plateau;
 
     public Othello() {
@@ -82,10 +82,14 @@ public class Othello {
         } catch (IOException e) {
             System.out.println(e);
         }
+        
 
 
         Othello othello = new Othello();
-        othello.plateau.initialise/*TestValideMove*//*test*/();
+        if(Othello.debugMode) othello.plateau.initialiseTestValideMove();
+        else {
+            othello.plateau.initialise();
+        }
         
         //othello.plateau.afficher();
         // boucle de jeu
