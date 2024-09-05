@@ -7,6 +7,8 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.junit.platform.console.shadow.picocli.CommandLine.ExecutionException;
+
 public class UseOthello {
 
     public static void main(String[] args) throws InterruptedException, FileNotFoundException, IOException, MouvementException {
@@ -71,9 +73,13 @@ public class UseOthello {
                     TimeUnit.SECONDS.sleep(1);
                 }
             }
-            catch(IndexOutOfBoundsException e){System.out.println("Mauvaise entrée !");j_actu--;}
-            catch(InputMismatchException e){System.out.println("Mauvaise entrée !"); j_actu--;}
-            catch(MouvementException e){System.out.println("Mouvement impossible !"); j_actu--;}
+            catch(IndexOutOfBoundsException e){System.err.println("Mauvaise entrée !");j_actu--;}
+            catch(InputMismatchException e){System.err.println("Mauvaise entrée !"); j_actu--;}
+            catch(MouvementException e){System.err.println("Mouvement impossible !"); j_actu--;}
+            catch(Exception e) {
+                System.err.println("Une erreur est survenue");
+                j_actu--;
+            }
             finally{TimeUnit.SECONDS.sleep(1);}
             System.out.flush();
             j_actu ++;

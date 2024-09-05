@@ -2,8 +2,7 @@ package main.java;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
-
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -50,6 +49,30 @@ public class GrilleT {
         g = new Grille();
         g.setCase(Couleur.NOIR, 0, 0);
         assertEquals(Couleur.NOIR, g.getCase(0, 0).couleur);
+    }
+
+    @Test
+    public void testinitialise() {
+        g = new Grille();
+        g.initialise();
+        assertEquals(Couleur.BLANC, g.getCase(3, 3).couleur);
+        assertEquals(Couleur.BLANC, g.getCase(4, 4).couleur);
+        assertEquals(Couleur.NOIR, g.getCase(3, 4).couleur);
+        assertEquals(Couleur.NOIR, g.getCase(4, 3).couleur);
+    }
+
+    @Test
+    public void testMouvementPossible() {
+        g = new Grille();
+        Joueur j = new Bot(Couleur.NOIR);
+        g.initialise();
+        assertTrue(g.mouvementPossible(3, 2, j));
+        assertFalse(g.mouvementPossible(3, 1, j));
+    }
+
+    @AfterAll
+    public static void tearDown() {
+        System.out.println("Fin des tests Grille");
     }
 
     
