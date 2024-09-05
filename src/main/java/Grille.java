@@ -7,9 +7,9 @@ import java.util.Map;
 
 
 class Grille {
-
+    private static int cpt = 0;
     ArrayList<ArrayList<Pion>> grille;
-    public List<int[]> pionARetourner = new ArrayList<int[]>();
+    public List<List<int[]>> pionARetourner = new ArrayList<>();
 
 
     public Grille() {
@@ -149,6 +149,7 @@ class Grille {
 
         // noir
         setCase(Couleur.NOIR, 1, 2);
+        setCase(Couleur.NOIR, 2, 1);
         setCase(Couleur.NOIR, 4, 2);
         setCase(Couleur.NOIR, 5, 2);
         setCase(Couleur.NOIR, 6, 2);
@@ -194,34 +195,38 @@ class Grille {
     public boolean mouvementPossible(int ligne, int colonne, Joueur joueur){
         Couleur colAdverse = (joueur.getColor() == Couleur.NOIR) ? Couleur.BLANC : Couleur.NOIR;
         if(!isEmpty(ligne, colonne)) return false;
-
+        pionARetourner.clear();
+        cpt = 0;
+        boolean possible = false;
         // Check les 8 directions
         for (int directionLigne = -1; directionLigne <= 1; directionLigne++) {
             for (int directionColonne = -1; directionColonne <= 1; directionColonne++) {
                 if (directionLigne == 0 && directionColonne == 0) continue; // Skip la direction (0,0)
-                pionARetourner.clear();
+                
                 if (checkDirection(joueur.getColor(), colAdverse, ligne, colonne, directionLigne, directionColonne)) {
-                    return true;
+                    possible = true;
                 }
+                cpt++;
             }
 
         }
-        return false;
+        return possible;
     }
 
     private boolean checkDirection(Couleur playerColor, Couleur colAdverse, int ligne, int colonne, int directionLigne, int directionColonne) {
         int l = ligne + directionLigne;
         int c = colonne + directionColonne;
         boolean pieceAdverse = false;
+        pionARetourner.add(new ArrayList<>());
 
         while (l >= 0 && l < 8 && c >= 0 && c < 8) {
             if (!isEmpty(l, c) && grille.get(l).get(c).couleur == colAdverse) {
-                pionARetourner.add(new int[]{c, l});
+                pionARetourner.get(cpt).add(new int[]{c, l});
                 pieceAdverse = true;
             } else if (!isEmpty(l, c) && grille.get(l).get(c).couleur == playerColor) {
                 return pieceAdverse; // Valide si on trouve au moins une pièce adverse
             } else {
-                //pionARetourner.clear();
+                pionARetourner.get(cpt).clear();
                 return false; // Vide, on arrête d'aller dans cette direction
             }
             l += directionLigne;

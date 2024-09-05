@@ -113,7 +113,9 @@ public class Othello {
                         if(othello.plateau.mouvementPossible(tab[1], tab[0], joueurCourrant)){
                             othello.plateau.setCase(joueurCourrant.getColor(), tab[0], tab[1]);
                             ArrayList<int[]> tmp = new ArrayList<int[]>();
-                            tmp.addAll(othello.plateau.pionARetourner);
+                            for (List<int[]> coords : othello.plateau.pionARetourner) {
+                                tmp.addAll(coords);
+                            }
                             for (int[] coord : tmp) {
                                 System.out.println(othello.plateau.afficher(joueurCourrant));
                                 TimeUnit.MILLISECONDS.sleep(500);
