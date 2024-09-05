@@ -29,8 +29,6 @@ public class Intro {
             
         }
 
-        if(Othello.debugMode) System.out.println("[Debug Mode]");
-
         try(BufferedReader br = new BufferedReader(new FileReader(new File("./src/main/ressources/txt/Regles.txt")))){
             while(br.ready()){
                 System.out.println(br.readLine());
@@ -47,7 +45,7 @@ public class Intro {
 
     public static void Start()  throws FileNotFoundException, IOException{
         Scanner scan = new Scanner(System.in);
-        String choix = scan.nextLine();
+        String choix = "";
         //Mode 1 contre ordinateur pas encore implémenté
         // if(Integer.parseInt(choix)==2){
         //     System.out.println("Coming soon... \n Appuyez sur Entrée pour revenir en arrière.");
@@ -57,7 +55,11 @@ public class Intro {
         // }
         while(choix.length() == 0 || (choix.charAt(0) != '1' && choix.charAt(0) != '2' && choix.charAt(0) != '3')){
             Intro.affichage();
+            if(Othello.debugMode) System.out.println("[Debug Mode]");
             choix = scan.nextLine();
+            if(choix.equals("uuddlrlrbas")){ 
+                Othello.debugMode = true;
+            }
         }
         Intro.clear();
         if (choix.charAt(0) == '1' || choix.charAt(0) == '2') {
