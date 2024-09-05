@@ -102,6 +102,7 @@ class Grille {
             res += "│\n┣━━━┽───┼───┼───┼───┼───┼───┼───┼───┤\n┃ " + (i+1) + " ";
             for(int j=0;j<8;j++){
                 res += "│ ";
+                
                 if(grille.get(i).get(j) == null && containsCoordonate(i, j, flags)){
                     res+= "⬚ ";
                 
@@ -136,6 +137,7 @@ class Grille {
         setCase(Couleur.NOIR, 4, 3);
     }
     public void initialisetest() {
+        // creer une situation avec le bug 
         // blanc
         setCase(Couleur.BLANC, 1, 1);
         setCase(Couleur.BLANC, 2, 2);
@@ -168,7 +170,7 @@ class Grille {
 
     public boolean mouvementPossible(int ligne, int colonne, Joueur joueur){
         Couleur colAdverse = (joueur.getColor() == Couleur.NOIR) ? Couleur.BLANC : Couleur.NOIR;
-        if(!isEmpty(colonne, ligne)) return false;
+        if(!isEmpty(ligne, colonne)) return false;
 
         // Check les 8 directions
         for (int directionLigne = -1; directionLigne <= 1; directionLigne++) {
