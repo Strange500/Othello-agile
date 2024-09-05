@@ -23,6 +23,7 @@ public class Joueur implements Serializable {
     public Joueur(String name, Couleur color) {
         
         this.name = name;
+        this.score = 0;
         if (playerExist(null)) {
             Joueur tmp = loadJoueur(name);
             this.score = tmp.score;
